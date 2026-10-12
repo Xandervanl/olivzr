@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="nl">
@@ -10,215 +11,153 @@
 
 <title>L.D.C. Dino World</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
 <style>
 
 :root {
 
-  --bg:#07110b;
+  --bg:#07110b; --panel:#13251a; --green:#a8e184;
 
-  --panel:#13251a;
-
-  --green:#a8e184;
-
-  --gold:#e9c778;
-
-  --muted:#bdcbb9;
-
-  --border:#35543a;
+  --gold:#e9c778; --muted:#bdcbb9; --border:#35543a;
 
 }
 
-*{box-sizing:border-box}
+* { box-sizing:border-box; }
 
-html{scroll-behavior:smooth}
+html { scroll-behavior:smooth; }
 
-body{
+body {
 
-  margin:0;
-
-  min-height:100vh;
+  margin:0; min-height:100vh;
 
   background:radial-gradient(ellipse at top,#29462b,#08110b 65%);
 
-  color:#eff6e9;
-
-  font-family:Arial,sans-serif;
+  color:#eff6e9; font-family:Arial,sans-serif;
 
 }
 
-header{
+header {
 
-  position:sticky;
+  position:sticky; top:0; z-index:10;
 
-  top:0;
+  display:flex; align-items:center; justify-content:space-between;
 
-  z-index:1001;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:12px;
-
-  padding:14px 20px;
-
-  background:rgba(7,17,11,.98);
+  padding:14px 20px; background:#07110b;
 
   border-bottom:1px solid var(--border);
 
 }
 
-.logo{font-size:24px;font-weight:900;letter-spacing:4px;color:var(--green)}
+.logo { font-size:23px; font-weight:900; letter-spacing:4px; color:var(--green); }
 
-.logo small{display:block;font-size:10px;letter-spacing:3px;margin-top:4px}
+.logo small { display:block; font-size:10px; letter-spacing:3px; margin-top:4px; }
 
-.balance{color:var(--gold);font-weight:bold;white-space:nowrap}
+.balance { color:var(--gold); font-weight:bold; }
 
-nav{
+nav {
 
-  position:sticky;
+  position:sticky; top:59px; z-index:9;
 
-  top:65px;
+  display:flex; justify-content:center; flex-wrap:wrap; gap:7px;
 
-  z-index:1000;
-
-  display:flex;
-
-  justify-content:center;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  padding:12px;
-
-  background:rgba(10,23,13,.98);
-
-  border-bottom:1px solid var(--border);
+  padding:10px; background:#0a170d; border-bottom:1px solid var(--border);
 
 }
 
-button{
+button {
 
-  border:1px solid #52744e;
+  border:1px solid #52744e; border-radius:9px; padding:11px 14px;
 
-  border-radius:9px;
-
-  padding:12px 15px;
-
-  color:white;
-
-  background:#203c27;
-
-  font-weight:bold;
-
-  cursor:pointer;
-
-  transition:background .2s;
+  color:white; background:#203c27; font-weight:bold; cursor:pointer;
 
 }
 
-button:hover{background:#426b40}
+button:hover { background:#426b40; }
 
-button.active,.primary{background:var(--green);color:#102012}
+button.active,.primary { background:var(--green); color:#102012; }
 
-button:disabled{opacity:.45;cursor:not-allowed}
+button:disabled { opacity:.45; cursor:not-allowed; }
 
-main{max-width:1100px;margin:auto;padding:18px}
+main { max-width:1100px; margin:auto; padding:16px; }
 
-.page{display:none}
+.page { display:none; }
 
-.page.active{display:block}
+.page.active { display:block; }
 
-.hero{
+.hero {
 
-  min-height:360px;
+  min-height:350px; padding:30px; display:flex; flex-direction:column;
 
-  padding:35px;
+  justify-content:center; border:1px solid #486749; border-radius:20px;
 
-  display:flex;
+  background:linear-gradient(90deg,rgba(5,15,8,.96),rgba(10,30,15,.65)),
 
-  flex-direction:column;
-
-  justify-content:center;
-
-  border:1px solid #486749;
-
-  border-radius:20px;
-
-  background:
-
-    linear-gradient(90deg,rgba(5,15,8,.96),rgba(10,30,15,.65)),
-
-    url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=85') center/cover;
+  url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=85") center/cover;
 
 }
 
-.eyebrow{color:var(--green);font-size:12px;letter-spacing:3px;font-weight:bold}
+.eyebrow { color:var(--green); font-size:12px; letter-spacing:3px; font-weight:bold; }
 
-h1{font-size:clamp(38px,8vw,68px);margin:15px 0}
+h1 { font-size:clamp(38px,8vw,68px); margin:15px 0; }
 
-h2{color:var(--green)}
+h2 { color:var(--green); }
 
-p{color:var(--muted);line-height:1.65}
+p { color:var(--muted); line-height:1.65; }
 
-.card{
+.card {
 
-  background:rgba(19,37,26,.96);
+  background:rgba(19,37,26,.96); border:1px solid var(--border);
 
-  border:1px solid var(--border);
-
-  border-radius:15px;
-
-  padding:22px;
-
-  margin-bottom:15px;
+  border-radius:15px; padding:20px; margin-bottom:15px;
 
 }
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(205px,1fr)); gap:14px; }
 
-.dino-icon{font-size:48px}
+.dino-icon { font-size:46px; }
 
-.price{color:var(--gold);font-weight:bold}
+.price { color:var(--gold); font-weight:bold; }
 
-.small{font-size:12px;color:#a6b5a6}
+.small { font-size:12px; color:#a6b5a6; }
 
-.answers{display:grid;gap:10px;margin:20px 0}
+.stat {
 
-.answers button{text-align:left}
+  display:inline-block; padding:9px 12px; border:1px solid var(--border);
 
-#feedback{min-height:25px}
+  border-radius:9px; margin:4px; color:var(--gold);
 
-#worldMap{height:500px;width:100%;border-radius:12px;background:#10251a}
+}
 
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#14251a;color:#eff6e9}
+.answers { display:grid; gap:10px; margin:20px 0; }
 
-.leaflet-popup-content b{color:var(--green)}
+.answers button { text-align:left; }
 
-footer{text-align:center;padding:25px;color:#8da08b}
+#feedback { min-height:25px; }
 
-@media(max-width:600px){
+.progressbar { height:8px; background:#263a29; border-radius:8px; overflow:hidden; margin:12px 0; }
 
-  header{padding:12px}
+.progressbar div { height:100%; background:var(--green); width:0; transition:width .3s; }
 
-  .logo{font-size:20px}
+.map-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
 
-  nav{top:59px;gap:5px;padding:9px 4px}
+.map-card { background:#10251a; border:1px solid var(--border); border-radius:12px; padding:15px; }
 
-  nav button{font-size:11px;padding:10px 7px}
+footer { text-align:center; padding:25px; color:#8da08b; }
 
-  main{padding:12px}
+@media(max-width:600px) {
 
-  .hero{padding:22px;min-height:320px}
+  header { padding:12px; }
 
-  .card{padding:17px}
+  .logo { font-size:20px; }
 
-  #worldMap{height:420px}
+  nav { top:55px; gap:4px; padding:8px 4px; }
+
+  nav button { font-size:11px; padding:9px 7px; }
+
+  main { padding:10px; }
+
+  .hero { padding:20px; min-height:320px; }
+
+  .card { padding:15px; }
 
 }
 
@@ -260,19 +199,57 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
     <h1>Betreed de<br>verloren wereld.</h1>
 
-    <p>Verken het donkere bos, ontdek dinosaurussen en verdien fossielen.</p>
+    <p>Ontdek dinosaurussen, beantwoord vragen en verdien fossielen.</p>
 
-    <div><button class="primary" onclick="showPage('quiz')">Begin avontuur →</button></div>
+    <div><button class="primary" onclick="showPage('quiz')">Start avontuur →</button></div>
 
   </div>
 
   <div class="grid" style="margin-top:18px">
 
-    <div class="card"><div class="dino-icon">🌲</div><h2>Op stap</h2><p>Beantwoord vragen en verdien 3 fossielen per goed antwoord.</p><button onclick="showPage('quiz')">Spelen</button></div>
+    <div class="card">
 
-    <div class="card"><div class="dino-icon">🌍</div><h2>Wereldkaart</h2><p>Ontdek landen en fossielenvindplaatsen.</p><button onclick="showPage('map')">Ontdekken</button></div>
+      <div class="dino-icon">🌲</div><h2>Op stap</h2>
 
-    <div class="card"><div class="dino-icon">🦖</div><h2>Dino-winkel</h2><p>Koop nieuwe dino's voor je collectie.</p><button onclick="showPage('shop')">Winkelen</button></div>
+      <p>Beantwoord 208 vragen. Elk goed antwoord levert 3 fossielen op.</p>
+
+      <button onclick="showPage('quiz')">Spelen</button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="dino-icon">🌍</div><h2>Wereldkaart</h2>
+
+      <p>Ontdek landen waar dinosaurusfossielen zijn gevonden.</p>
+
+      <button onclick="showPage('map')">Ontdekken</button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="dino-icon">🦖</div><h2>Dino-winkel</h2>
+
+      <p>Koop nieuwe dinosaurussen met je fossielen.</p>
+
+      <button onclick="showPage('shop')">Winkelen</button>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📊 Jouw avontuur</h2>
+
+    <span class="stat">🦴 <span id="homeFossils">0</span> fossielen</span>
+
+    <span class="stat">🦖 <span id="ownedCount">1</span> dino's</span>
+
+    <span class="stat">❓ <span id="answeredCount">0</span>/208 vragen goed</span>
+
+    <span class="stat">🎁 <span id="rewardCount">0</span> beloningen</span>
 
   </div>
 
@@ -286,7 +263,9 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
     <h2>De dinoquiz</h2>
 
-    <p id="progress"></p>
+    <p id="progress">Vraag 1 van 208</p>
+
+    <div class="progressbar"><div id="quizProgress"></div></div>
 
     <h3 id="question"></h3>
 
@@ -295,6 +274,8 @@ footer{text-align:center;padding:25px;color:#8da08b}
     <p id="feedback" aria-live="polite"></p>
 
     <button id="next" class="primary" hidden onclick="nextQuestion()">Volgende vraag →</button>
+
+    <button id="restartQuiz" hidden onclick="restartQuiz()">Quiz opnieuw spelen</button>
 
   </div>
 
@@ -306,13 +287,11 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
     <h2>🌍 De wereldkaart</h2>
 
-    <p>Zoom in op echte landen en klik op een dinosaurusmarker om meer te ontdekken.</p>
+    <p>Bekijk de bekende landen en vindplaatsen van dinosaurussen.</p>
 
-    <div id="worldMap"></div>
+    <div id="mapList" class="map-grid"></div>
 
-    <div id="mapInfo"><p>Selecteer een dinosaurus op de kaart.</p></div>
-
-    <p class="small">De kaart toont moderne landsgrenzen. Vindplaatsen zijn benaderingen; de continenten zagen er in de prehistorie anders uit.</p>
+    <p class="small">De landen zijn vereenvoudigde vindplaatsinformatie. De hybride dinosaurussen uit Jurassic World zijn fictief.</p>
 
   </div>
 
@@ -322,7 +301,7 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
   <h2>🦖 Dino-winkel</h2>
 
-  <p>Spaar fossielen. De Compsognathus is de goedkoopste en de Indoraptor de duurste.</p>
+  <p>Je begint met 0 fossielen. Verdien fossielen met de quiz.</p>
 
   <div id="shopGrid" class="grid"></div>
 
@@ -332,7 +311,7 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
   <h2>🎒 Mijn collectie</h2>
 
-  <p>Hier vind je alle dinosaurussen die je gekocht hebt.</p>
+  <p id="collectionIntro"></p>
 
   <div id="collectionGrid" class="grid"></div>
 
@@ -342,103 +321,321 @@ footer{text-align:center;padding:25px;color:#8da08b}
 
 <footer>L.D.C. DINO WORLD · EXPLORE THE UNKNOWN</footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
 
-const dinos=[
+"use strict";
 
-{id:"compy",name:"Compsognathus",price:5,emoji:"🦎",country:"Duitsland",lat:48.8,lon:11.4,era:"Laat-Jura",info:"Een kleine vleesetende dinosaurus."},
+/* Nieuwe opslagnaam: de game begint schoon op 0 fossielen. */
 
-{id:"para",name:"Parasaurolophus",price:15,emoji:"🦕",country:"Canada",lat:50.5,lon:-111.5,era:"Laat-Krijt",info:"Een planteneter met een opvallende kopkam."},
+const SAVE_KEY = "ldc-dino-world-fresh-v1";
 
-{id:"stego",name:"Stegosaurus",price:25,emoji:"🦕",country:"Verenigde Staten",lat:39.2,lon:-110.5,era:"Laat-Jura",info:"Een planteneter met rugplaten en staartstekels."},
+const dinos = [
 
-{id:"raptor",name:"Velociraptor",price:50,emoji:"🦎",country:"Mongolië",lat:43.5,lon:103,era:"Laat-Krijt",info:"Een kleine gevederde roofdinosaurus."},
+ {id:"compy",name:"Compsognathus",price:5,emoji:"🦎",country:"Duitsland",era:"Laat-Jura",info:"Een kleine vleesetende dinosaurus."},
 
-{id:"trike",name:"Triceratops",price:80,emoji:"🦕",country:"Verenigde Staten",lat:47,lon:-109,era:"Laat-Krijt",info:"Een planteneter met drie hoorns."},
+ {id:"para",name:"Parasaurolophus",price:15,emoji:"🦕",country:"Canada",era:"Laat-Krijt",info:"Een planteneter met een opvallende kopkam."},
 
-{id:"spino",name:"Spinosaurus",price:150,emoji:"🦖",country:"Egypte",lat:27,lon:29,era:"Krijt",info:"Een grote roofdinosaurus met een opvallend rugzeil."},
+ {id:"stego",name:"Stegosaurus",price:25,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Jura",info:"Een planteneter met grote rugplaten."},
 
-{id:"trex",name:"Tyrannosaurus rex",price:250,emoji:"🦖",country:"Verenigde Staten",lat:46,lon:-108,era:"Laat-Krijt",info:"Een grote roofdinosaurus die ongeveer 68–66 miljoen jaar geleden leefde."},
+ {id:"raptor",name:"Velociraptor",price:50,emoji:"🦎",country:"Mongolië",era:"Laat-Krijt",info:"Een kleine gevederde roofdinosaurus."},
 
-{id:"indoraptor",name:"Indoraptor",price:500,emoji:"🐲",country:"Fictief",lat:0,lon:0,era:"Fictief",info:"Een genetische hybride uit Jurassic World; geen echte dinosaurussoort."},
+ {id:"trike",name:"Triceratops",price:80,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Krijt",info:"Een planteneter met drie hoorns."},
 
-{id:"brachio",name:"Brachiosaurus",price:110,emoji:"🦕",country:"Verenigde Staten",lat:40,lon:-108,era:"Laat-Jura",info:"Een enorme planteneter met lange voorpoten en een lange nek."},
+ {id:"spino",name:"Spinosaurus",price:150,emoji:"🦖",country:"Egypte",era:"Krijt",info:"Een grote roofdinosaurus met een rugzeil."},
 
-{id:"ankylo",name:"Ankylosaurus",price:95,emoji:"🦖",country:"Canada",lat:51,lon:-113,era:"Laat-Krijt",info:"Een zwaar bepantserde planteneter met een knots aan zijn staart."},
+ {id:"trex",name:"Tyrannosaurus rex",price:250,emoji:"🦖",country:"Verenigde Staten",era:"Laat-Krijt",info:"Een grote roofdinosaurus."},
 
-{id:"allo",name:"Allosaurus",price:65,emoji:"🦖",country:"Verenigde Staten",lat:39,lon:-110,era:"Laat-Jura",info:"Een grote roofdinosaurus uit het Jura."},
+ {id:"indoraptor",name:"Indoraptor",price:500,emoji:"🐲",country:"Fictief",era:"Fictief",info:"Een hybride uit Jurassic World."},
 
-{id:"amarga",name:"Amargasaurus",price:130,emoji:"🦕",country:"Argentinië",lat:-37,lon:-69,era:"Vroeg-Krijt",info:"Een langnekdinosaurus met opvallende nekrugstekels."}
+ {id:"indominus",name:"Indominus rex",price:450,emoji:"🦖",country:"Fictief",era:"Fictief",info:"Een genetisch ontworpen hybride."},
 
-];
+ {id:"brachio",name:"Brachiosaurus",price:110,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Jura",info:"Een enorme planteneter met een lange nek."},
 
-const questions=[
+ {id:"ankylo",name:"Ankylosaurus",price:95,emoji:"🦖",country:"Canada",era:"Laat-Krijt",info:"Een gepantserde planteneter met staartknots."},
 
-{id:"q1",q:"In welke periode leefde de T. rex?",a:["Jura","Krijt","Trias"],correct:1,why:"De T. rex leefde aan het einde van het Krijt, ongeveer 68–66 miljoen jaar geleden."},
+ {id:"allo",name:"Allosaurus",price:65,emoji:"🦖",country:"Verenigde Staten",era:"Laat-Jura",info:"Een grote roofdinosaurus uit het Jura."},
 
-{id:"q2",q:"Wat at de Triceratops voornamelijk?",a:["Planten","Vis","Andere grote dino's"],correct:0,why:"Triceratops was een planteneter."},
-
-{id:"q3",q:"In welk huidige land zijn fossielen van Velociraptor gevonden?",a:["Nederland","Mongolië","Brazilië"],correct:1,why:"Velociraptor is bekend van fossielen uit het huidige Mongolië."},
-
-{id:"q4",q:"Welke dinosaurus had grote platen op zijn rug?",a:["Stegosaurus","T. rex","Compsognathus"],correct:0,why:"Stegosaurus had grote rugplaten."},
-
-{id:"q5",q:"In welk werelddeel zijn fossielen van Spinosaurus gevonden?",a:["Europa","Noord-Amerika","Afrika"],correct:2,why:"Spinosaurus is bekend van fossielen uit Noord-Afrika."},
-
-{id:"q6",q:"Welke dinosaurus had drie hoorns?",a:["Velociraptor","Triceratops","Brachiosaurus"],correct:1,why:"Triceratops had drie hoorns."},
-
-{id:"q7",q:"Welke dinosaurus is een fictieve hybride?",a:["Indoraptor","Stegosaurus","Triceratops"],correct:0,why:"De Indoraptor komt uit Jurassic World."},
-
-{id:"q8",q:"Waarvoor gebruikte Ankylosaurus zijn staartknots waarschijnlijk?",a:["Verdediging","Vliegen","Graven naar lucht"],correct:0,why:"De staartknots kon waarschijnlijk worden gebruikt om zich te verdedigen."}
+ {id:"amarga",name:"Amargasaurus",price:130,emoji:"🦕",country:"Argentinië",era:"Vroeg-Krijt",info:"Een langnekdinosaurus met opvallende nekrugstekels."}
 
 ];
 
-let stored={};
+const facts = [
 
-try{stored=JSON.parse(localStorage.getItem("ldc-world-save"))||{};}catch(e){}
+ ["Compsognathus","vleeseter","Laat-Jura","Duitsland","een klein lichaam"],
 
-let fossils=Number(stored.fossils)||0;
+ ["Parasaurolophus","planteneter","Laat-Krijt","Canada","een lange holle kopkam"],
 
-let owned=Array.isArray(stored.owned)?stored.owned:["compy"];
+ ["Stegosaurus","planteneter","Laat-Jura","Verenigde Staten","grote platen op de rug"],
 
-let answered=Array.isArray(stored.answered)?stored.answered:[];
+ ["Velociraptor","vleeseter","Laat-Krijt","Mongolië","een grote sikkelklauw"],
 
-let qi=0,locked=false,mapInstance=null;
+ ["Triceratops","planteneter","Laat-Krijt","Verenigde Staten","drie hoorns"],
 
-function save(){
+ ["Spinosaurus","vleeseter","Krijt","Noord-Afrika","een opvallend rugzeil"],
 
- localStorage.setItem("ldc-world-save",JSON.stringify({fossils,owned,answered}));
+ ["Tyrannosaurus rex","vleeseter","Laat-Krijt","Verenigde Staten","enorme kaken en kleine armen"],
 
- document.getElementById("balance").textContent=fossils;
+ ["Brachiosaurus","planteneter","Laat-Jura","Verenigde Staten","lange voorpoten en een lange nek"],
 
- renderShop();renderCollection();
+ ["Ankylosaurus","planteneter","Laat-Krijt","Canada","een gepantserd lichaam en staartknots"],
+
+ ["Allosaurus","vleeseter","Laat-Jura","Verenigde Staten","een grote schedel met scherpe tanden"],
+
+ ["Amargasaurus","planteneter","Vroeg-Krijt","Argentinië","lange stekels op de nek"],
+
+ ["Diplodocus","planteneter","Laat-Jura","Verenigde Staten","een uitzonderlijk lange staart"],
+
+ ["Apatosaurus","planteneter","Laat-Jura","Verenigde Staten","een zwaar lichaam en lange nek"],
+
+ ["Carnotaurus","vleeseter","Laat-Krijt","Argentinië","twee hoorns boven de ogen"],
+
+ ["Iguanodon","planteneter","Vroeg-Krijt","België","duimstekels"],
+
+ ["Pachycephalosaurus","planteneter","Laat-Krijt","Verenigde Staten","een dikke koepelvormige schedel"],
+
+ ["Giganotosaurus","vleeseter","Laat-Krijt","Argentinië","een enorme schedel"],
+
+ ["Carcharodontosaurus","vleeseter","Krijt","Noord-Afrika","zaagtandachtige tanden"],
+
+ ["Deinonychus","vleeseter","Vroeg-Krijt","Verenigde Staten","een grote sikkelklauw aan de voet"],
+
+ ["Dilophosaurus","vleeseter","Vroeg-Jura","Verenigde Staten","twee kammen op de schedel"],
+
+ ["Gallimimus","waarschijnlijk alleseter","Laat-Krijt","Mongolië","lange poten om snel te rennen"],
+
+ ["Oviraptor","waarschijnlijk alleseter","Laat-Krijt","Mongolië","een tandeloze snavel"],
+
+ ["Protoceratops","planteneter","Laat-Krijt","Mongolië","een kleine nekkraag"],
+
+ ["Therizinosaurus","waarschijnlijk planteneter","Laat-Krijt","Mongolië","enorme gebogen klauwen"],
+
+ ["Utahraptor","vleeseter","Vroeg-Krijt","Verenigde Staten","grote sikkelklauwen"],
+
+ ["Microraptor","vleeseter","Vroeg-Krijt","China","veren aan armen en benen"],
+
+ ["Archaeopteryx","vleeseter","Laat-Jura","Duitsland","veren en tanden"],
+
+ ["Psittacosaurus","planteneter","Vroeg-Krijt","China","een papegaaiachtige snavel"],
+
+ ["Styracosaurus","planteneter","Laat-Krijt","Canada","lange hoorns aan de nekkraag"],
+
+ ["Pachyrhinosaurus","planteneter","Laat-Krijt","Canada","een verdikte benige neusknobbel"],
+
+ ["Edmontosaurus","planteneter","Laat-Krijt","Canada","een brede snavel"],
+
+ ["Maiasaura","planteneter","Laat-Krijt","Verenigde Staten","aanwijzingen voor ouderlijke zorg"],
+
+ ["Corythosaurus","planteneter","Laat-Krijt","Canada","een helmachtige kopkam"],
+
+ ["Lambeosaurus","planteneter","Laat-Krijt","Canada","een holle kopkam"],
+
+ ["Kentrosaurus","planteneter","Laat-Jura","Tanzania","stekels op rug en staart"],
+
+ ["Plateosaurus","planteneter","Laat-Trias","Duitsland","een lange nek en grijphanden"],
+
+ ["Coelophysis","vleeseter","Laat-Trias","Verenigde Staten","een slank lichaam"],
+
+ ["Herrerasaurus","vleeseter","Laat-Trias","Argentinië","een vroege grote roofdinosaurus"],
+
+ ["Eoraptor","waarschijnlijk alleseter","Laat-Trias","Argentinië","een klein lichaam en lange staart"],
+
+ ["Mussaurus","planteneter","Vroeg-Jura","Argentinië","een lange nek en lange staart"],
+
+ ["Riojasaurus","planteneter","Laat-Trias","Argentinië","een stevig lichaam en sterke poten"],
+
+ ["Saltasaurus","planteneter","Laat-Krijt","Argentinië","kleine benige platen in de huid"],
+
+ ["Argentinosaurus","planteneter","Laat-Krijt","Argentinië","een van de grootste bekende landdieren"],
+
+ ["Dreadnoughtus","planteneter","Laat-Krijt","Argentinië","een enorm sauropodenlichaam"],
+
+ ["Mamenchisaurus","planteneter","Laat-Jura","China","een bijzonder lange nek"],
+
+ ["Shunosaurus","planteneter","Laat-Jura","China","een knotsvormig uiteinde van de staart"],
+
+ ["Mononykus","vleeseter","Laat-Krijt","Mongolië","zeer korte armen met één grote klauw"],
+
+ ["Baryonyx","vleeseter","Vroeg-Krijt","Engeland","een grote klauw aan de voorpoot"],
+
+ ["Suchomimus","vleeseter","Vroeg-Krijt","Niger","een lange krokodilachtige snuit"],
+
+ ["Ouranosaurus","planteneter","Vroeg-Krijt","Niger","een hoge rug met lange doornuitsteeksels"]
+
+];
+
+function shuffle(arr) {
+
+ const a=[...arr];
+
+ for(let i=a.length-1;i>0;i--) {
+
+  const j=Math.floor(Math.random()*(i+1));
+
+  [a[i],a[j]]=[a[j],a[i]];
+
+ }
+
+ return a;
 
 }
 
-function showPage(id){
+function makeQuestion(id,q,correct,pool,why) {
 
- document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id===id));
+ const distractors=shuffle([...new Set(pool.filter(x=>x!==correct))]).slice(0,2);
 
- document.querySelectorAll("nav button").forEach(el=>el.classList.toggle("active",el.dataset.page===id));
+ const a=shuffle([correct,...distractors]);
+
+ return {id,q,a,correct:a.indexOf(correct),why};
+
+}
+
+const questions = [
+
+ {id:"q1",q:"In welke periode leefde de T. rex?",a:["Jura","Krijt","Trias"],correct:1,why:"T. rex leefde aan het einde van het Krijt."},
+
+ {id:"q2",q:"Wat at Triceratops voornamelijk?",a:["Planten","Vis","Andere grote dino's"],correct:0,why:"Triceratops was een planteneter."},
+
+ {id:"q3",q:"Waar zijn fossielen van Velociraptor gevonden?",a:["Nederland","Mongolië","Brazilië"],correct:1,why:"Velociraptor is bekend van fossielen uit Mongolië."},
+
+ {id:"q4",q:"Welke dinosaurus had grote platen op zijn rug?",a:["Stegosaurus","T. rex","Compsognathus"],correct:0,why:"Stegosaurus had grote rugplaten."},
+
+ {id:"q5",q:"In welk werelddeel zijn fossielen van Spinosaurus gevonden?",a:["Europa","Noord-Amerika","Afrika"],correct:2,why:"Spinosaurus is bekend uit Noord-Afrika."},
+
+ {id:"q6",q:"Welke dinosaurus had drie hoorns?",a:["Velociraptor","Triceratops","Brachiosaurus"],correct:1,why:"Triceratops had drie hoorns."},
+
+ {id:"q7",q:"Welke dinosaurus is een fictieve hybride?",a:["Indoraptor","Stegosaurus","Triceratops"],correct:0,why:"Indoraptor komt uit Jurassic World."},
+
+ {id:"q8",q:"Waarvoor diende de staartknots van Ankylosaurus waarschijnlijk?",a:["Verdediging","Vliegen","Ademen"],correct:0,why:"De staartknots kon waarschijnlijk dienen voor verdediging."}
+
+];
+
+const eras=[...new Set(facts.map(d=>d[2]))];
+
+const countries=[...new Set(facts.map(d=>d[3]))];
+
+const diets=[...new Set(facts.map(d=>d[1]))];
+
+const features=[...new Set(facts.map(d=>d[4]))];
+
+facts.forEach((d,i)=>{
+
+ const [name,diet,era,country,feature]=d;
+
+ const n=String(i+1).padStart(3,"0");
+
+ questions.push(
+
+  makeQuestion("diet"+n,"Wat at de "+name+" voornamelijk?",diet,diets,name+" was "+diet+"."),
+
+  makeQuestion("era"+n,"In welke periode leefde de "+name+"?",era,eras,name+" leefde in de periode "+era+"."),
+
+  makeQuestion("country"+n,"In welk huidig land of gebied zijn fossielen van de "+name+" gevonden?",country,countries,"Fossielen van "+name+" zijn bekend uit "+country+"."),
+
+  makeQuestion("feature"+n,"Welk kenmerk past bij de "+name+"?",feature,features,"Een herkenbaar kenmerk is "+feature+".")
+
+ );
+
+});
+
+// 8 + (50 x 4) = 208 vragen.
+
+let fossils=0;
+
+let owned=["compy"];
+
+let answered=[];
+
+let qi=0;
+
+let locked=false;
+
+// Deze game begint bewust helemaal opnieuw.
+
+try {
+
+ localStorage.removeItem(SAVE_KEY);
+
+} catch(e) {}
+
+function save() {
+
+ try {
+
+  localStorage.setItem(SAVE_KEY,JSON.stringify({fossils,owned,answered,qi}));
+
+ } catch(e) {
+
+  console.warn("Opslaan niet mogelijk.",e);
+
+ }
+
+ updateStats();
+
+ renderShop();
+
+ renderCollection();
+
+}
+
+function updateStats() {
+
+ document.getElementById("balance").textContent=fossils;
+
+ document.getElementById("homeFossils").textContent=fossils;
+
+ document.getElementById("ownedCount").textContent=owned.length;
+
+ document.getElementById("answeredCount").textContent=answered.length;
+
+ document.getElementById("rewardCount").textContent=answered.length;
+
+ document.getElementById("collectionIntro").textContent=
+
+  "Je hebt "+owned.length+" dinosaurus in je collectie.";
+
+}
+
+function showPage(id) {
+
+ document.querySelectorAll(".page").forEach(el=>
+
+  el.classList.toggle("active",el.id===id)
+
+ );
+
+ document.querySelectorAll("nav button").forEach(el=>
+
+  el.classList.toggle("active",el.dataset.page===id)
+
+ );
 
  window.scrollTo({top:0,behavior:"smooth"});
 
  if(id==="quiz")renderQuestion();
 
- if(id==="map")setTimeout(initMap,180);
+ if(id==="map")renderMap();
 
 }
 
-document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll("nav button").forEach(b=>{
 
-function renderQuestion(){
+ b.addEventListener("click",()=>showPage(b.dataset.page));
+
+});
+
+function renderQuestion() {
 
  locked=false;
 
  const q=questions[qi];
 
- document.getElementById("progress").textContent=`Vraag ${qi+1} van ${questions.length}`;
+ document.getElementById("progress").textContent=
+
+  `Vraag ${qi+1} van ${questions.length}`;
+
+ document.getElementById("quizProgress").style.width=
+
+  ((qi+1)/questions.length*100)+"%";
 
  document.getElementById("question").textContent=q.q;
 
@@ -446,7 +643,11 @@ function renderQuestion(){
 
  document.getElementById("next").hidden=true;
 
- const box=document.getElementById("answers");box.replaceChildren();
+ document.getElementById("restartQuiz").hidden=true;
+
+ const box=document.getElementById("answers");
+
+ box.replaceChildren();
 
  q.a.forEach((a,i)=>{
 
@@ -454,33 +655,39 @@ function renderQuestion(){
 
   b.textContent=String.fromCharCode(65+i)+" — "+a;
 
-  b.onclick=()=>answerQuestion(i);box.appendChild(b);
+  b.onclick=()=>answerQuestion(i);
+
+  box.appendChild(b);
 
  });
 
 }
 
-function answerQuestion(i){
+function answerQuestion(i) {
 
- if(locked)return;locked=true;
+ if(locked)return;
 
- const q=questions[qi],feedback=document.getElementById("feedback");
+ locked=true;
+
+ const q=questions[qi];
+
+ const feedback=document.getElementById("feedback");
 
  document.querySelectorAll("#answers button").forEach(b=>b.disabled=true);
 
- if(i===q.correct){
+ if(i===q.correct) {
 
-  if(!answered.includes(q.id)){
+  // IEDER GOED ANTWOORD: altijd +3, ook bij herhaling.
 
-   fossils+=3;answered.push(q.id);save();
+  fossils+=3;
 
-   feedback.textContent="✅ Goed! Je verdient 3 fossielen. "+q.why;
+  if(!answered.includes(q.id))answered.push(q.id);
 
-  }else feedback.textContent="✅ Goed antwoord! "+q.why+" Deze beloning heb je al ontvangen.";
+  feedback.textContent="✅ Goed! Je krijgt 3 fossielen! "+q.why;
 
   feedback.style.color="#a8e184";
 
- }else{
+ } else {
 
   feedback.textContent="❌ Helaas! "+q.why;
 
@@ -490,29 +697,85 @@ function answerQuestion(i){
 
  document.getElementById("next").hidden=false;
 
- document.getElementById("next").textContent=qi===questions.length-1?"Quiz opnieuw starten":"Volgende vraag →";
+ document.getElementById("next").textContent=
+
+  qi===questions.length-1?"Quiz afronden →":"Volgende vraag →";
+
+ save();
 
 }
 
-function nextQuestion(){qi=(qi+1)%questions.length;renderQuestion();}
+function nextQuestion() {
 
-function renderShop(){
+ if(qi>=questions.length-1) {
 
- const box=document.getElementById("shopGrid");if(!box)return;
+  document.getElementById("question").textContent="🎉 Je hebt alle vragen doorlopen!";
+
+  document.getElementById("answers").replaceChildren();
+
+  document.getElementById("feedback").textContent=
+
+   "Je hebt "+answered.length+" verschillende vragen goed beantwoord. Speel opnieuw om weer fossielen te verdienen!";
+
+  document.getElementById("next").hidden=true;
+
+  document.getElementById("restartQuiz").hidden=false;
+
+  return;
+
+ }
+
+ qi++;
+
+ save();
+
+ renderQuestion();
+
+}
+
+function restartQuiz() {
+
+ qi=0;
+
+ save();
+
+ renderQuestion();
+
+}
+
+function renderShop() {
+
+ const box=document.getElementById("shopGrid");
+
+ if(!box)return;
 
  box.replaceChildren();
 
- dinos.slice().sort((a,b)=>a.price-b.price).forEach(d=>{
+ dinos.forEach(d=>{
 
-  const card=document.createElement("article");card.className="card";
+  const card=document.createElement("article");
 
-  const emoji=document.createElement("div");emoji.className="dino-icon";emoji.textContent=d.emoji;
+  card.className="card";
 
-  const title=document.createElement("h3");title.textContent=d.name;
+  const emoji=document.createElement("div");
 
-  const info=document.createElement("p");info.textContent=d.info;
+  emoji.className="dino-icon";
 
-  const price=document.createElement("p");price.className="price";price.textContent=d.price+" 🦴";
+  emoji.textContent=d.emoji;
+
+  const title=document.createElement("h3");
+
+  title.textContent=d.name;
+
+  const info=document.createElement("p");
+
+  info.textContent=d.info;
+
+  const price=document.createElement("p");
+
+  price.className="price";
+
+  price.textContent=d.price+" 🦴";
 
   const btn=document.createElement("button");
 
@@ -526,93 +789,101 @@ function renderShop(){
 
    if(owned.includes(d.id)||fossils<d.price)return;
 
-   fossils-=d.price;owned.push(d.id);save();
+   fossils-=d.price;
+
+   owned.push(d.id);
+
+   save();
 
   };
 
-  card.append(emoji,title,info,price,btn);box.appendChild(card);
+  card.append(emoji,title,info,price,btn);
+
+  box.appendChild(card);
 
  });
 
 }
 
-function renderCollection(){
+function renderCollection() {
 
- const box=document.getElementById("collectionGrid");if(!box)return;
+ const box=document.getElementById("collectionGrid");
+
+ if(!box)return;
 
  box.replaceChildren();
 
  dinos.filter(d=>owned.includes(d.id)).forEach(d=>{
 
-  const c=document.createElement("article");c.className="card";
+  const card=document.createElement("article");
 
-  const emoji=document.createElement("div");emoji.className="dino-icon";emoji.textContent=d.emoji;
+  card.className="card";
 
-  const h=document.createElement("h3");h.textContent=d.name;
+  const emoji=document.createElement("div");
 
-  const p=document.createElement("p");p.textContent=d.info;
+  emoji.className="dino-icon";
 
-  c.append(emoji,h,p);box.appendChild(c);
+  emoji.textContent=d.emoji;
 
- });
+  const title=document.createElement("h3");
 
- if(!box.children.length)box.textContent="Je collectie is nog leeg. Verdien fossielen en koop een dino!";
+  title.textContent=d.name;
 
-}
+  const info=document.createElement("p");
 
-function initMap(){
+  info.textContent=d.info;
 
- const el=document.getElementById("worldMap");
+  card.append(emoji,title,info);
 
- if(mapInstance){setTimeout(()=>mapInstance.invalidateSize(),100);return;}
-
- if(typeof L==="undefined"){el.textContent="Kaart niet beschikbaar. Controleer je internetverbinding.";return;}
-
- mapInstance=L.map(el).setView([20,0],2);
-
- L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
-
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-
-  maxZoom:10
-
- }).addTo(mapInstance);
-
- dinos.filter(d=>d.id!=="indoraptor").forEach(d=>{
-
-  const marker=L.marker([d.lat,d.lon]).addTo(mapInstance);
-
-  marker.bindPopup(`<b>${d.emoji} ${d.name}</b><br>Land: ${d.country}<br>Periode: ${d.era}<br>${d.info}`);
-
-  marker.on("click",()=>{
-
-   const box=document.getElementById("mapInfo");box.replaceChildren();
-
-   const h=document.createElement("h3");h.textContent=d.emoji+" "+d.name;
-
-   const country=document.createElement("p");country.textContent="🌍 Land: "+d.country;
-
-   const era=document.createElement("p");era.textContent="🕰️ Periode: "+d.era;
-
-   const info=document.createElement("p");info.textContent=d.info;
-
-   box.append(h,country,era,info);
-
-  });
+  box.appendChild(card);
 
  });
 
+ if(!box.children.length)box.textContent="Je collectie is nog leeg.";
+
 }
 
-window.addEventListener("resize",()=>{
+function renderMap() {
 
- if(mapInstance&&document.getElementById("map").classList.contains("active"))mapInstance.invalidateSize();
+ const box=document.getElementById("mapList");
 
-});
+ box.replaceChildren();
+
+ dinos.filter(d=>d.country!=="Fictief").forEach(d=>{
+
+  const card=document.createElement("article");
+
+  card.className="map-card";
+
+  const title=document.createElement("h3");
+
+  title.textContent=d.emoji+" "+d.name;
+
+  const country=document.createElement("p");
+
+  country.textContent="🌍 Land: "+d.country;
+
+  const era=document.createElement("p");
+
+  era.textContent="🕰️ Periode: "+d.era;
+
+  const info=document.createElement("p");
+
+  info.textContent=d.info;
+
+  card.append(title,country,era,info);
+
+  box.appendChild(card);
+
+ });
+
+}
 
 save();
 
 renderQuestion();
+
+renderMap();
 
 </script>
 
