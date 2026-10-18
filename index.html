@@ -24,27 +24,17 @@
 
 *{box-sizing:border-box}
 
-body{margin:0;background:var(--paper);color:var(--ink);
-
-font:15px system-ui,sans-serif}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px system-ui,sans-serif}
 
 button,input,textarea,select{font:inherit}
 
-button{cursor:pointer;border:1px solid var(--line);border-radius:12px;
-
-background:white;color:var(--ink);padding:9px 12px}
+button{cursor:pointer;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink);padding:9px 12px}
 
 button:hover{filter:brightness(.97);transform:translateY(-1px)}
 
 button.active,.primary{background:#38362f;color:white}
 
-header{display:flex;align-items:center;justify-content:space-between;
-
-gap:12px;padding:14px 4%;border-bottom:1px solid var(--line);
-
-position:sticky;top:0;background:#fffaf0ee;backdrop-filter:blur(12px);
-
-z-index:5}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4%;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fffaf0ee;backdrop-filter:blur(12px);z-index:5}
 
 .logo{font-size:19px;font-weight:900;letter-spacing:-1px}
 
@@ -56,29 +46,17 @@ main{max-width:1200px;margin:auto;padding:24px 18px}
 
 h1,h2,p{margin-top:0}
 
-.hero{padding:38px 25px;border-radius:26px;
+.hero{padding:38px 25px;border-radius:26px;background:linear-gradient(120deg,#f8d6df,#f8e8ad,#d4e9d0,#d9d0f1);position:relative;overflow:hidden}
 
-background:linear-gradient(120deg,#f8d6df,#f8e8ad,#d4e9d0,#d9d0f1);
-
-position:relative;overflow:hidden}
-
-.hero h1{font-size:clamp(34px,6vw,65px);line-height:1;
-
-letter-spacing:-3px;max-width:700px}
+.hero h1{font-size:clamp(34px,6vw,65px);line-height:1;letter-spacing:-3px;max-width:700px}
 
 .hero p{max-width:540px;line-height:1.7}
 
-.paint{display:inline-block;color:#b64d77;
+.paint{display:inline-block;color:#b64d77;transform:rotate(-2deg);text-shadow:2px 3px #fff6}
 
-transform:rotate(-2deg);text-shadow:2px 3px #fff6}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0}
 
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-
-gap:13px;margin:20px 0}
-
-.card{border:1px solid var(--line);border-radius:18px;
-
-padding:18px;background:white;text-align:left;min-height:150px}
+.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:white;text-align:left;min-height:150px}
 
 .card .emoji{font-size:30px;display:block;margin-bottom:12px}
 
@@ -86,31 +64,21 @@ padding:18px;background:white;text-align:left;min-height:150px}
 
 .card small,.muted{color:#777267}
 
-.panel{background:white;border:1px solid var(--line);
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0}
 
-border-radius:18px;padding:15px;margin:12px 0}
+.toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:10px 0}
 
-.toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;
-
-margin:10px 0}
-
-.editor{display:grid;grid-template-columns:180px minmax(0,1fr);
-
-gap:12px}
+.editor{display:grid;grid-template-columns:180px minmax(0,1fr);gap:12px}
 
 .side{display:flex;flex-direction:column;gap:8px}
 
 .side button{text-align:left}
 
-canvas{display:block;width:100%;height:auto;border-radius:12px;
-
-border:1px solid var(--line);touch-action:pan-y}
+canvas{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);touch-action:pan-y}
 
 .workspace{min-width:0}
 
-.field{width:100%;padding:10px;border:1px solid var(--line);
-
-border-radius:10px;background:#fffdf8;margin:5px 0 10px}
+.field{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;margin:5px 0 10px}
 
 textarea.field{min-height:160px;resize:vertical}
 
@@ -118,17 +86,13 @@ textarea.field{min-height:160px;resize:vertical}
 
 .row>*{min-width:0}
 
-.pill{background:#f4eee3;border-radius:20px;padding:5px 9px;
-
-font-size:12px}
+.pill{background:#f4eee3;border-radius:20px;padding:5px 9px;font-size:12px}
 
 [hidden]{display:none!important}
 
 footer{text-align:center;padding:30px;color:#8b8173}
 
-@keyframes wash{0%,100%{transform:translate(0,0) rotate(0)}
-
-50%{transform:translate(8px,-7px) rotate(3deg)}}
+@keyframes wash{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(8px,-7px) rotate(3deg)}}
 
 .wash{animation:wash 5s ease-in-out infinite}
 
@@ -170,8 +134,6 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
     <button onclick="page('story')">Make a Story</button>
 
-    <button class="primary" onclick="page('account')" id="accountBtn">Inloggen</button>
-
   </nav>
 
 </header>
@@ -188,7 +150,9 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
     <p>Maak games, bouw websites en schrijf verhalen.
 
-    Geef je fantasie alle ruimte, één kleurrijke creatie tegelijk.</p>
+    Geef je fantasie alle ruimte, één kleurrijke creatie tegelijk.
+
+    Je hoeft niet in te loggen. Begin direct met creëren!</p>
 
     <div class="row">
 
@@ -220,11 +184,11 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
     <b>🌱 Alles begint met een idee.</b>
 
-    <p class="muted" style="margin:7px 0 0">Je kunt eerst experimenteren.
+    <p class="muted" style="margin:7px 0 0">Je hoeft geen account te maken.
 
-    Voor echte accounts en het online delen van projecten is later
+    Experimenteer, bouw projecten en download je creaties wanneer je wilt.
 
-    een beveiligde server nodig.</p>
+    Projecten online delen tussen gebruikers vereist later een server.</p>
 
   </div>
 
@@ -238,9 +202,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
   <div class="toolbar">
 
-    <input class="field" id="gameName" value="Mijn eerste level"
-
-    aria-label="Naam van je level" style="width:210px;margin:0">
+    <input class="field" id="gameName" value="Mijn eerste level" aria-label="Naam van je level" style="width:210px;margin:0">
 
     <button onclick="undo()">↶ Ongedaan</button>
 
@@ -286,9 +248,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
       <label>Kleur</label>
 
-      <input type="color" id="objColor" value="#f5b8c9"
-
-      class="field" onchange="changeColor()">
+      <input type="color" id="objColor" value="#f5b8c9" class="field" onchange="changeColor()">
 
       <label>Hitbox</label>
 
@@ -302,9 +262,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
       <label>Grootte</label>
 
-      <input type="range" min="15" max="130" value="55"
-
-      id="objSize" class="field" oninput="resizeObject()">
+      <input type="range" min="15" max="130" value="55" id="objSize" class="field" oninput="resizeObject()">
 
       <button onclick="animateObject()">↝ Animeer object</button>
 
@@ -332,9 +290,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
         <p class="muted">Klik op een object om het te selecteren.
 
-        Sleep het om te verplaatsen. Klik op de achtergrond om een
-
-        selectie te wissen.</p>
+        Sleep het om te verplaatsen. Klik op de achtergrond om een selectie te wissen.</p>
 
       </div>
 
@@ -380,9 +336,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
       <label>Tekst of knoplabel</label>
 
-      <input class="field" id="siteText" placeholder="Mijn tekst"
-
-      oninput="updateSiteText()">
+      <input class="field" id="siteText" placeholder="Mijn tekst" oninput="updateSiteText()">
 
       <label>Knopactie</label>
 
@@ -420,9 +374,7 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
     <label>Jouw verhaal</label>
 
-    <textarea class="field" id="storyText"
-
-    placeholder="Er was eens een wereld waarin verf tot leven kwam..."></textarea>
+    <textarea class="field" id="storyText" placeholder="Er was eens een wereld waarin verf tot leven kwam..."></textarea>
 
     <label>Illustratie toevoegen</label>
 
@@ -478,69 +430,13 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
   <div class="panel">
 
-    <b>👥 Vrienden</b>
+    <b>✨ Creëer zonder account</b>
 
-    <p class="muted">Log in om de toekomstige vriendenfunctie te verkennen.</p>
+    <p class="muted">Je hoeft niet in te loggen om Animate and Decorate te gebruiken.
 
-    <button onclick="page('account')">Account bekijken</button>
+    Maak je eigen projecten en download ze naar je apparaat.</p>
 
-  </div>
-
-</section>
-
-<section id="account" hidden>
-
-  <h1>👋 Welkom bij Animate and Decorate</h1>
-
-  <div class="panel" style="max-width:480px">
-
-    <div class="toolbar">
-
-      <button onclick="accountMode('login')" id="loginTab" class="active">Inloggen</button>
-
-      <button onclick="accountMode('register')" id="registerTab">Account maken</button>
-
-    </div>
-
-    <form id="accountForm">
-
-      <label>E-mailadres</label>
-
-      <input class="field" type="email" id="email" required
-
-      autocomplete="email" placeholder="jij@voorbeeld.nl">
-
-      <label>Nickname</label>
-
-      <input class="field" id="nickname" required minlength="2"
-
-      maxlength="24" placeholder="Jouw unieke nickname"
-
-      autocomplete="nickname">
-
-      <label>Wachtwoord</label>
-
-      <input class="field" type="password" id="password" required
-
-      minlength="8" autocomplete="current-password"
-
-      placeholder="Minimaal 8 tekens">
-
-      <button class="primary" type="submit" id="accountSubmit">Inloggen</button>
-
-    </form>
-
-    <p class="muted" style="margin-top:12px">
-
-      Demo: dit formulier maakt nog geen echt account aan.
-
-      Gebruik hier geen echt wachtwoord.
-
-    </p>
-
-    <div id="accountMessage" role="status"></div>
-
-    <button onclick="logout()">Uitloggen uit demo</button>
+    <button class="primary" onclick="page('game')">🎮 Begin met maken</button>
 
   </div>
 
@@ -560,9 +456,7 @@ let showHits=false, playing=false, animating=false, frame=0;
 
 let historyStack=[], keys={}, player={x:55,y:330,vx:0,vy:0,onGround:false};
 
-let accountKind='login', demoUser=null, siteItems=[], siteSelected=null;
-
-let storyImageUrl=null, onlineFilter='Alle';
+let siteItems=[], siteSelected=null, storyImageUrl=null, onlineFilter='Alle';
 
 const canvas=$('gameCanvas'), ctx=canvas.getContext('2d');
 
@@ -572,11 +466,7 @@ function page(name){
 
   currentPage=name;
 
-  ['home','game','site','story','online','account'].forEach(
-
-    id=>$(id).hidden=id!==name
-
-  );
+  ['home','game','site','story','online'].forEach(id=>$(id).hidden=id!==name);
 
   if(name==='game')draw();
 
@@ -600,7 +490,9 @@ function undo(){
 
   objects=JSON.parse(historyStack.pop());
 
-  selected=objects[objects.length-1]?.id??null;draw();
+  selected=objects[objects.length-1]?.id??null;
+
+  draw();
 
 }
 
@@ -608,15 +500,19 @@ function add(type){
 
   snapshot();
 
-  const o={id:crypto.randomUUID(),type,x:300+Math.random()*120,
+  const o={
+
+    id:crypto.randomUUID(),type,x:300+Math.random()*120,
 
     y:150+Math.random()*90,w:type==='platform'?150:55,
 
-    h:type==='platform'?18:55,rotation:0,color:colors[objects.length%colors.length],
+    h:type==='platform'?18:55,rotation:0,
 
-    hitbox:!['decor','hitbox'].includes(type),decor:type==='decor',
+    color:colors[objects.length%colors.length],
 
-    vx:0,vy:0};
+    hitbox:!['decor'].includes(type),decor:type==='decor',vx:0,vy:0
+
+  };
 
   if(type==='hitbox')o.hitbox=true;
 
@@ -642,35 +538,79 @@ function syncSettings(){
 
 }
 
-function changeColor(){const o=getSelected();if(o){snapshot();o.color=$('objColor').value;draw()}}
+function changeColor(){
 
-function changeHit(){const o=getSelected();if(o){snapshot();o.hitbox=$('objHit').value==='yes';draw()}}
+  const o=getSelected();
 
-function resizeObject(){const o=getSelected();if(o){o.w=+$('objSize').value;o.h=o.type==='platform'?18:o.w;draw()}}
+  if(o){snapshot();o.color=$('objColor').value;draw()}
 
-function rotateObject(){const o=getSelected();if(o){snapshot();o.rotation=(o.rotation+15)%360;draw()}}
+}
 
-function copyObject(){const o=getSelected();if(o)clipboard=JSON.parse(JSON.stringify(o))}
+function changeHit(){
+
+  const o=getSelected();
+
+  if(o){snapshot();o.hitbox=$('objHit').value==='yes';draw()}
+
+}
+
+function resizeObject(){
+
+  const o=getSelected();
+
+  if(o){o.w=+$('objSize').value;o.h=o.type==='platform'?18:o.w;draw()}
+
+}
+
+function rotateObject(){
+
+  const o=getSelected();
+
+  if(o){snapshot();o.rotation=(o.rotation+15)%360;draw()}
+
+}
+
+function copyObject(){
+
+  const o=getSelected();
+
+  if(o)clipboard=JSON.parse(JSON.stringify(o));
+
+}
 
 function pasteObject(){
 
-  if(!clipboard)return;snapshot();
+  if(!clipboard)return;
+
+  snapshot();
 
   const o={...clipboard,id:crypto.randomUUID(),x:clipboard.x+25,y:clipboard.y+25};
 
-  objects.push(o);selected=o.id;draw()
+  objects.push(o);selected=o.id;draw();
 
 }
 
 function removeObject(){
 
-  snapshot();objects=objects.filter(o=>o.id!==selected);
+  if(!selected)return;
 
-  selected=null;draw();syncSettings()
+  snapshot();
+
+  objects=objects.filter(o=>o.id!==selected);
+
+  selected=null;draw();syncSettings();
 
 }
 
-function toggleHits(){showHits=!showHits;$('hitBtn').classList.toggle('active',showHits);draw()}
+function toggleHits(){
+
+  showHits=!showHits;
+
+  $('hitBtn').classList.toggle('active',showHits);
+
+  draw();
+
+}
 
 function animateObject(){animating=true}
 
@@ -680,7 +620,7 @@ function exportLevel(){
 
   const data={name:$('gameName').value,objects};
 
-  download(JSON.stringify(data,null,2),'level.json','application/json')
+  download(JSON.stringify(data,null,2),'level.json','application/json');
 
 }
 
@@ -690,13 +630,17 @@ function download(content,name,type){
 
   const url=URL.createObjectURL(blob),a=document.createElement('a');
 
-  a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
+  a.href=url;a.download=name;a.click();
+
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 
 }
 
 function shape(o){
 
-  ctx.save();ctx.translate(o.x+o.w/2,o.y+o.h/2);
+  ctx.save();
+
+  ctx.translate(o.x+o.w/2,o.y+o.h/2);
 
   ctx.rotate(o.rotation*Math.PI/180);
 
@@ -704,13 +648,15 @@ function shape(o){
 
   ctx.beginPath();
 
-  if(o.type==='circle')ctx.ellipse(0,0,o.w/2,o.h/2,0,0,Math.PI*2);
+  if(o.type==='circle'){
 
-  else if(o.type==='triangle'){
+    ctx.ellipse(0,0,o.w/2,o.h/2,0,0,Math.PI*2);
+
+  }else if(o.type==='triangle'){
 
     ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,o.h/2);
 
-    ctx.lineTo(-o.w/2,o.h/2);ctx.closePath()
+    ctx.lineTo(-o.w/2,o.h/2);ctx.closePath();
 
   }else if(o.type==='star'){
 
@@ -720,23 +666,25 @@ function shape(o){
 
       const x=Math.cos(a)*r,y=Math.sin(a)*r;
 
-      i?ctx.lineTo(x,y):ctx.moveTo(x,y)
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
 
-    }ctx.closePath()
+    }
+
+    ctx.closePath();
 
   }else if(o.type==='diamond'){
 
     ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,0);
 
-    ctx.lineTo(0,o.h/2);ctx.lineTo(-o.w/2,0);ctx.closePath()
+    ctx.lineTo(0,o.h/2);ctx.lineTo(-o.w/2,0);ctx.closePath();
 
   }else if(o.type==='decor'){
 
-    ctx.arc(0,0,o.w/2,0,Math.PI*2)
+    ctx.arc(0,0,o.w/2,0,Math.PI*2);
 
   }else{
 
-    ctx.rect(-o.w/2,-o.h/2,o.w,o.h)
+    ctx.rect(-o.w/2,-o.h/2,o.w,o.h);
 
   }
 
@@ -748,7 +696,7 @@ function shape(o){
 
     ctx.strokeStyle='#bd6d8b';ctx.lineWidth=4;
 
-    ctx.beginPath();ctx.arc(0,0,o.w*.24,0,Math.PI*1.7);ctx.stroke()
+    ctx.beginPath();ctx.arc(0,0,o.w*.24,0,Math.PI*1.7);ctx.stroke();
 
   }
 
@@ -764,19 +712,25 @@ function draw(){
 
   ctx.strokeStyle='#f0e8dc';ctx.lineWidth=1;
 
-  for(let x=0;x<800;x+=25){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,440);ctx.stroke()}
+  for(let x=0;x<800;x+=25){
 
-  for(let y=0;y<440;y+=25){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(800,y);ctx.stroke()}
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,440);ctx.stroke();
+
+  }
+
+  for(let y=0;y<440;y+=25){
+
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(800,y);ctx.stroke();
+
+  }
 
   objects.forEach(o=>{
-
-    ctx.save();
 
     if(animating&&o.id===selected){
 
       o.x+=Math.sin(frame/20)*.7;
 
-      o.y+=Math.cos(frame/24)*.4
+      o.y+=Math.cos(frame/24)*.4;
 
     }
 
@@ -784,9 +738,11 @@ function draw(){
 
     if(showHits&&o.hitbox){
 
-      ctx.strokeStyle='#e34c55';ctx.lineWidth=2;ctx.setLineDash([5,4]);
+      ctx.strokeStyle='#e34c55';ctx.lineWidth=2;
 
-      ctx.strokeRect(o.x,o.y,o.w,o.h);ctx.setLineDash([])
+      ctx.setLineDash([5,4]);ctx.strokeRect(o.x,o.y,o.w,o.h);
+
+      ctx.setLineDash([]);
 
     }
 
@@ -796,11 +752,9 @@ function draw(){
 
       ctx.setLineDash([4,3]);ctx.strokeRect(o.x-4,o.y-4,o.w+8,o.h+8);
 
-      ctx.setLineDash([])
+      ctx.setLineDash([]);
 
     }
-
-    ctx.restore()
 
   });
 
@@ -816,7 +770,9 @@ function drawPlayer(){
 
   ctx.fillStyle='#7b68b5';ctx.fillRect(player.x,player.y,25,36);
 
-  ctx.fillStyle='white';ctx.fillRect(player.x+5,player.y+7,5,5);
+  ctx.fillStyle='white';
+
+  ctx.fillRect(player.x+5,player.y+7,5,5);
 
   ctx.fillRect(player.x+15,player.y+7,5,5);
 
@@ -824,7 +780,7 @@ function drawPlayer(){
 
 function intersects(o,x,y){
 
-  return x>=o.x-5&&x<=o.x+o.w+5&&y>=o.y-5&&y<=o.y+o.h+5
+  return x>=o.x-5&&x<=o.x+o.w+5&&y>=o.y-5&&y<=o.y+o.h+5;
 
 }
 
@@ -842,11 +798,15 @@ canvas.addEventListener('pointerdown',e=>{
 
   const o=[...objects].reverse().find(o=>intersects(o,x,y));
 
-  if(o){selected=o.id;snapshot();drag={x,y,ox:o.x,oy:o.y};canvas.setPointerCapture(e.pointerId)}
+  if(o){
 
-  else selected=null;
+    selected=o.id;snapshot();drag={x,y,ox:o.x,oy:o.y};
 
-  draw()
+    canvas.setPointerCapture(e.pointerId);
+
+  }else selected=null;
+
+  draw();
 
 });
 
@@ -860,11 +820,15 @@ canvas.addEventListener('pointermove',e=>{
 
   const y=(e.clientY-r.top)*canvas.height/r.height;
 
-  const o=getSelected();if(o){o.x=drag.ox+x-drag.x;o.y=drag.oy+y-drag.y;draw()}
+  const o=getSelected();
+
+  if(o){o.x=drag.ox+x-drag.x;o.y=drag.oy+y-drag.y;draw()}
 
 });
 
 canvas.addEventListener('pointerup',()=>drag=null);
+
+canvas.addEventListener('pointercancel',()=>drag=null);
 
 function togglePlay(){
 
@@ -876,7 +840,7 @@ function togglePlay(){
 
   if(playing)player={x:35,y:320,vx:0,vy:0,onGround:false};
 
-  draw()
+  draw();
 
 }
 
@@ -888,7 +852,7 @@ window.addEventListener('keydown',e=>{
 
   if(e.key==='Delete'&&currentPage==='game'&&!playing)removeObject();
 
-  if(e.key==='Escape'&&playing)togglePlay()
+  if(e.key==='Escape'&&playing)togglePlay();
 
 });
 
@@ -902,7 +866,11 @@ function loop(){
 
     player.vx=keys.arrowleft||keys.a?-4:keys.arrowright||keys.d?4:0;
 
-    if((keys[' ']||keys.arrowup||keys.w)&&player.onGround){player.vy=-10;player.onGround=false}
+    if((keys[' ']||keys.arrowup||keys.w)&&player.onGround){
+
+      player.vy=-10;player.onGround=false;
+
+    }
 
     player.vy+=.45;player.x+=player.vx;player.y+=player.vy;
 
@@ -912,9 +880,11 @@ function loop(){
 
       if(player.x+25>o.x&&player.x<o.x+o.w&&
 
-        player.y+36>=o.y&&player.y+36<=o.y+o.h+Math.max(5,player.vy)&&player.vy>=0){
+        player.y+36>=o.y&&
 
-        player.y=o.y-36;player.vy=0;player.onGround=true
+        player.y+36<=o.y+o.h+Math.max(5,player.vy)&&player.vy>=0){
+
+        player.y=o.y-36;player.vy=0;player.onGround=true;
 
       }
 
@@ -924,35 +894,87 @@ function loop(){
 
     player.x=Math.max(0,Math.min(775,player.x));
 
-    draw()
+    draw();
 
   }else if(animating)draw();
 
-  requestAnimationFrame(loop)
+  requestAnimationFrame(loop);
 
 }
 
-add('platform');objects[0].x=100;objects[0].y=385;objects[0].w=600;objects[0].h=20;
+// Standaard level
 
-add('star');objects[1].x=320;objects[1].y=260;
+const initialPlatform={
 
-add('circle');objects[2].x=490;objects[2].y=300;
+  id:crypto.randomUUID(),type:'platform',x:100,y:385,w:600,h:20,
 
-draw();loop();
+  rotation:0,color:'#f5b8c9',hitbox:true,decor:false,vx:0,vy:0
+
+};
+
+const initialStar={
+
+  id:crypto.randomUUID(),type:'star',x:320,y:260,w:55,h:55,
+
+  rotation:0,color:'#b8dff0',hitbox:true,decor:false,vx:0,vy:0
+
+};
+
+const initialCircle={
+
+  id:crypto.randomUUID(),type:'circle',x:490,y:300,w:55,h:55,
+
+  rotation:0,color:'#c9e5bb',hitbox:true,decor:false,vx:0,vy:0
+
+};
+
+objects=[initialPlatform,initialStar,initialCircle];
+
+selected=initialStar.id;
+
+draw();
+
+loop();
 
 // Websitebouwer
 
 function addSite(type){
 
-  const item={type,text:({heading:'Mijn creatieve wereld',text:'Welkom op mijn website!',button:'Klik mij',image:'Afbeelding toevoegen',paint:'✿'})[type],action:'alert'};
+  const item={
 
-  siteItems.push(item);siteSelected=siteItems.length-1;renderSite()
+    type,
+
+    text:({
+
+      heading:'Mijn creatieve wereld',
+
+      text:'Welkom op mijn website!',
+
+      button:'Klik mij',
+
+      image:'Afbeelding toevoegen',
+
+      paint:'✿'
+
+    })[type],
+
+    action:'alert'
+
+  };
+
+  siteItems.push(item);
+
+  siteSelected=siteItems.length-1;
+
+  renderSite();
 
 }
 
 function renderSite(){
 
-  const root=$('siteItems');root.replaceChildren();
+  const root=$('siteItems');
+
+  root.replaceChildren();
 
   siteItems.forEach((it,i)=>{
 
@@ -960,35 +982,97 @@ function renderSite(){
 
     el.style.cssText='padding:12px;margin:8px 0;border:1px dashed #ddd;border-radius:10px';
 
-    if(it.type==='heading'){const h=document.createElement('h2');h.textContent=it.text;el.append(h)}
+    if(it.type==='heading'){
 
-    if(it.type==='text'){const p=document.createElement('p');p.textContent=it.text;el.append(p)}
+      const h=document.createElement('h2');
 
-    if(it.type==='paint'){const p=document.createElement('div');p.textContent='✿ '+it.text;p.style.cssText='font-size:40px;color:#d66c91';el.append(p)}
-
-    if(it.type==='button'){const b=document.createElement('button');b.textContent=it.text;b.onclick=()=>it.action==='alert'?alert(it.text):root.children[i+1]?.scrollIntoView({behavior:'smooth'});el.append(b)}
-
-    if(it.type==='image'){
-
-      const label=document.createElement('label');label.textContent=it.text+' ';
-
-      const input=document.createElement('input');input.type='file';input.accept='image/*';
-
-      input.onchange=()=>{const f=input.files[0];if(!f)return;
-
-        const img=document.createElement('img');img.src=URL.createObjectURL(f);
-
-        img.style.cssText='max-width:100%;border-radius:12px';el.append(img)};
-
-      label.append(input);el.append(label)
+      h.textContent=it.text;el.append(h);
 
     }
 
-    el.onclick=e=>{if(e.target===el){siteSelected=i;$('siteText').value=it.text;$('siteAction').value=it.action}};
+    if(it.type==='text'){
 
-    root.append(el)
+      const p=document.createElement('p');
 
-  })
+      p.textContent=it.text;el.append(p);
+
+    }
+
+    if(it.type==='paint'){
+
+      const p=document.createElement('div');
+
+      p.textContent='✿ '+it.text;
+
+      p.style.cssText='font-size:40px;color:#d66c91';
+
+      el.append(p);
+
+    }
+
+    if(it.type==='button'){
+
+      const b=document.createElement('button');
+
+      b.textContent=it.text;
+
+      b.onclick=()=>{
+
+        if(it.action==='alert')alert(it.text);
+
+        else root.children[i+1]?.scrollIntoView({behavior:'smooth'});
+
+      };
+
+      el.append(b);
+
+    }
+
+    if(it.type==='image'){
+
+      const label=document.createElement('label');
+
+      label.textContent=it.text+' ';
+
+      const input=document.createElement('input');
+
+      input.type='file';input.accept='image/*';
+
+      input.onchange=()=>{
+
+        const f=input.files[0];if(!f)return;
+
+        const img=document.createElement('img');
+
+        img.src=URL.createObjectURL(f);
+
+        img.style.cssText='max-width:100%;border-radius:12px';
+
+        el.append(img);
+
+      };
+
+      label.append(input);el.append(label);
+
+    }
+
+    el.onclick=e=>{
+
+      if(e.target===el){
+
+        siteSelected=i;
+
+        $('siteText').value=it.text;
+
+        $('siteAction').value=it.action;
+
+      }
+
+    };
+
+    root.append(el);
+
+  });
 
 }
 
@@ -996,7 +1080,21 @@ function updateSiteText(){
 
   const it=siteItems[siteSelected];if(!it)return;
 
-  it.text=$('siteText').value;it.action=$('siteAction').value;renderSite()
+  it.text=$('siteText').value;
+
+  it.action=$('siteAction').value;
+
+  renderSite();
+
+}
+
+function esc(s){
+
+  return String(s).replace(/[&<>"']/g,c=>({
+
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+
+  }[c]));
 
 }
 
@@ -1004,23 +1102,43 @@ function exportSite(){
 
   const html='<!doctype html><html lang="nl"><meta charset="utf-8"><title>Mijn site</title><body style="font:18px system-ui;background:#fffaf0;padding:30px">'+
 
-    siteItems.map(i=>i.type==='heading'?'<h1>'+esc(i.text)+'</h1>':i.type==='text'?'<p>'+esc(i.text)+'</p>':i.type==='button'?'<button onclick="alert(\\''+esc(i.text).replace(/'/g,"&#39;")+'\\')">'+esc(i.text)+'</button>':'<p>'+esc(i.text)+'</p>').join('')+'</body></html>';
+    siteItems.map(i=>
 
-  download(html,'mijn-site.html','text/html')
+      i.type==='heading'?'<h1>'+esc(i.text)+'</h1>':
+
+      i.type==='text'?'<p>'+esc(i.text)+'</p>':
+
+      i.type==='button'?'<button>'+esc(i.text)+'</button>':
+
+      '<p>'+esc(i.text)+'</p>'
+
+    ).join('')+'</body></html>';
+
+  download(html,'mijn-site.html','text/html');
 
 }
-
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 // Verhalen
 
 function previewStory(){
 
-  const root=$('storyPreview');root.replaceChildren();
+  const root=$('storyPreview');
 
-  const h=document.createElement('h2');h.textContent=$('storyTitle').value||'Mijn verhaal';root.append(h);
+  root.replaceChildren();
 
-  const p=document.createElement('p');p.style.whiteSpace='pre-wrap';p.textContent=$('storyText').value;root.append(p);
+  const h=document.createElement('h2');
+
+  h.textContent=$('storyTitle').value||'Mijn verhaal';
+
+  root.append(h);
+
+  const p=document.createElement('p');
+
+  p.style.whiteSpace='pre-wrap';
+
+  p.textContent=$('storyText').value;
+
+  root.append(p);
 
   const f=$('storyImage').files[0];
 
@@ -1030,15 +1148,17 @@ function previewStory(){
 
     storyImageUrl=URL.createObjectURL(f);
 
-    const img=document.createElement('img');img.src=storyImageUrl;
+    const img=document.createElement('img');
+
+    img.src=storyImageUrl;
 
     img.style.cssText='max-width:100%;border-radius:15px';
 
     if($('storyMotion').value==='float')img.className='wash';
 
-    if($('storyMotion').value==='fade')img.style.animation='wash 5s infinite alternate';
+    if($('storyMotion').value==='fade')img.style.animation='fadeStory 3s infinite alternate';
 
-    root.append(img)
+    root.append(img);
 
   }
 
@@ -1048,15 +1168,17 @@ function downloadStory(){
 
   const content='<!doctype html><html lang="nl"><meta charset="utf-8"><title>'+
 
-  esc($('storyTitle').value)+'</title><body style="font:18px system-ui;max-width:750px;margin:40px auto;line-height:1.8"><h1>'+
+    esc($('storyTitle').value)+'</title><body style="font:18px system-ui;max-width:750px;margin:40px auto;line-height:1.8"><h1>'+
 
-  esc($('storyTitle').value)+'</h1><p style="white-space:pre-wrap">'+esc($('storyText').value)+'</p></body></html>';
+    esc($('storyTitle').value)+'</h1><p style="white-space:pre-wrap">'+
 
-  download(content,'mijn-verhaal.html','text/html')
+    esc($('storyText').value)+'</p></body></html>';
+
+  download(content,'mijn-verhaal.html','text/html');
 
 }
 
-// Online voorbeeldprojecten
+// Voorbeeldprojecten
 
 const projects=[
 
@@ -1070,67 +1192,57 @@ const projects=[
 
 ];
 
-function filterOnline(type){onlineFilter=type;renderOnline()}
+function filterOnline(type){
+
+  onlineFilter=type;
+
+  renderOnline();
+
+}
 
 function renderOnline(){
 
-  const root=$('onlineCards');root.replaceChildren();
+  const root=$('onlineCards');
+
+  root.replaceChildren();
 
   projects.filter(p=>onlineFilter==='Alle'||p.type===onlineFilter).forEach(p=>{
 
-    const b=document.createElement('button');b.className='card';
+    const b=document.createElement('button');
 
-    const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;b.append(icon);
+    b.className='card';
 
-    const title=document.createElement('b');title.textContent=p.name;b.append(title);
+    const icon=document.createElement('span');
 
-    const desc=document.createElement('small');desc.textContent=p.desc;b.append(desc);
+    icon.className='emoji';
 
-    const tag=document.createElement('p');tag.className='pill';tag.textContent='Demo · '+p.type;b.append(tag);
+    icon.textContent=p.emoji;
 
-    root.append(b)
+    b.append(icon);
 
-  })
+    const title=document.createElement('b');
 
-}
+    title.textContent=p.name;
 
-// Accountdemonstratie: geen server, geen echte registratie
+    b.append(title);
 
-function accountMode(kind){
+    const desc=document.createElement('small');
 
-  accountKind=kind;
+    desc.textContent=p.desc;
 
-  $('loginTab').classList.toggle('active',kind==='login');
+    b.append(desc);
 
-  $('registerTab').classList.toggle('active',kind==='register');
+    const tag=document.createElement('p');
 
-  $('accountSubmit').textContent=kind==='login'?'Inloggen':'Account maken';
+    tag.className='pill';
 
-  $('password').autocomplete=kind==='login'?'current-password':'new-password';
+    tag.textContent='Demo · '+p.type;
 
-  $('accountMessage').textContent='';
+    b.append(tag);
 
-}
+    root.append(b);
 
-$('accountForm').addEventListener('submit',e=>{
-
-  e.preventDefault();
-
-  if(accountKind==='register'){
-
-    $('accountMessage').textContent='Registratie is nog niet aangesloten op een server. Je kunt nu geen echt account aanmaken.';
-
-    return
-
-  }
-
-  $('accountMessage').textContent='Demo: inloggen is nog niet aangesloten op een server.';
-
-});
-
-function logout(){
-
-  demoUser=null;$('accountMessage').textContent='Je bent uitgelogd uit de demo.'
+  });
 
 }
 
@@ -1139,3 +1251,4 @@ function logout(){
 </body>
 
 </html>
+
