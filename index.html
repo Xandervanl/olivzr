@@ -6,157 +6,145 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>L.D.C. Dino World</title>
+<title>Animate and Decorate</title>
 
 <style>
 
 :root {
 
-  --bg:#07110b; --panel:#13251a; --green:#a8e184;
+  --paper:#fffaf0; --ink:#37352f; --pink:#f5b8c9;
 
-  --gold:#e9c778; --muted:#bdcbb9; --border:#35543a;
+  --blue:#b8dff0; --green:#c9e5bb; --yellow:#f7df8b;
 
-}
-
-* { box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
-
-body {
-
-  margin:0; min-height:100vh;
-
-  background:radial-gradient(ellipse at top,#29462b,#08110b 65%);
-
-  color:#eff6e9; font-family:Arial,sans-serif;
+  --purple:#d9c8f3; --line:#e9dfd0;
 
 }
 
-header {
+*{box-sizing:border-box}
 
-  position:sticky; top:0; z-index:10;
+body{margin:0;background:var(--paper);color:var(--ink);
 
-  display:flex; align-items:center; justify-content:space-between;
+font:15px system-ui,sans-serif}
 
-  padding:14px 20px; background:#07110b;
+button,input,textarea,select{font:inherit}
 
-  border-bottom:1px solid var(--border);
+button{cursor:pointer;border:1px solid var(--line);border-radius:12px;
 
-}
+background:white;color:var(--ink);padding:9px 12px}
 
-.logo { font-size:23px; font-weight:900; letter-spacing:4px; color:var(--green); }
+button:hover{filter:brightness(.97);transform:translateY(-1px)}
 
-.logo small { display:block; font-size:10px; letter-spacing:3px; margin-top:4px; }
+button.active,.primary{background:#38362f;color:white}
 
-.balance { color:var(--gold); font-weight:bold; }
+header{display:flex;align-items:center;justify-content:space-between;
 
-nav {
+gap:12px;padding:14px 4%;border-bottom:1px solid var(--line);
 
-  position:sticky; top:59px; z-index:9;
+position:sticky;top:0;background:#fffaf0ee;backdrop-filter:blur(12px);
 
-  display:flex; justify-content:center; flex-wrap:wrap; gap:7px;
+z-index:5}
 
-  padding:10px; background:#0a170d; border-bottom:1px solid var(--border);
+.logo{font-size:19px;font-weight:900;letter-spacing:-1px}
 
-}
+.logo span{color:#d66c91}
 
-button {
+nav{display:flex;gap:7px;flex-wrap:wrap}
 
-  border:1px solid #52744e; border-radius:9px; padding:11px 14px;
+main{max-width:1200px;margin:auto;padding:24px 18px}
 
-  color:white; background:#203c27; font-weight:bold; cursor:pointer;
+h1,h2,p{margin-top:0}
 
-}
+.hero{padding:38px 25px;border-radius:26px;
 
-button:hover { background:#426b40; }
+background:linear-gradient(120deg,#f8d6df,#f8e8ad,#d4e9d0,#d9d0f1);
 
-button.active,.primary { background:var(--green); color:#102012; }
+position:relative;overflow:hidden}
 
-button:disabled { opacity:.45; cursor:not-allowed; }
+.hero h1{font-size:clamp(34px,6vw,65px);line-height:1;
 
-main { max-width:1100px; margin:auto; padding:16px; }
+letter-spacing:-3px;max-width:700px}
 
-.page { display:none; }
+.hero p{max-width:540px;line-height:1.7}
 
-.page.active { display:block; }
+.paint{display:inline-block;color:#b64d77;
 
-.hero {
+transform:rotate(-2deg);text-shadow:2px 3px #fff6}
 
-  min-height:350px; padding:30px; display:flex; flex-direction:column;
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
 
-  justify-content:center; border:1px solid #486749; border-radius:20px;
+gap:13px;margin:20px 0}
 
-  background:linear-gradient(90deg,rgba(5,15,8,.96),rgba(10,30,15,.65)),
+.card{border:1px solid var(--line);border-radius:18px;
 
-  url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=85") center/cover;
+padding:18px;background:white;text-align:left;min-height:150px}
 
-}
+.card .emoji{font-size:30px;display:block;margin-bottom:12px}
 
-.eyebrow { color:var(--green); font-size:12px; letter-spacing:3px; font-weight:bold; }
+.card b{display:block;margin-bottom:7px}
 
-h1 { font-size:clamp(38px,8vw,68px); margin:15px 0; }
+.card small,.muted{color:#777267}
 
-h2 { color:var(--green); }
+.panel{background:white;border:1px solid var(--line);
 
-p { color:var(--muted); line-height:1.65; }
+border-radius:18px;padding:15px;margin:12px 0}
 
-.card {
+.toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;
 
-  background:rgba(19,37,26,.96); border:1px solid var(--border);
+margin:10px 0}
 
-  border-radius:15px; padding:20px; margin-bottom:15px;
+.editor{display:grid;grid-template-columns:180px minmax(0,1fr);
 
-}
+gap:12px}
 
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(205px,1fr)); gap:14px; }
+.side{display:flex;flex-direction:column;gap:8px}
 
-.dino-icon { font-size:46px; }
+.side button{text-align:left}
 
-.price { color:var(--gold); font-weight:bold; }
+canvas{display:block;width:100%;height:auto;border-radius:12px;
 
-.small { font-size:12px; color:#a6b5a6; }
+border:1px solid var(--line);touch-action:pan-y}
 
-.stat {
+.workspace{min-width:0}
 
-  display:inline-block; padding:9px 12px; border:1px solid var(--border);
+.field{width:100%;padding:10px;border:1px solid var(--line);
 
-  border-radius:9px; margin:4px; color:var(--gold);
+border-radius:10px;background:#fffdf8;margin:5px 0 10px}
 
-}
+textarea.field{min-height:160px;resize:vertical}
 
-.answers { display:grid; gap:10px; margin:20px 0; }
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 
-.answers button { text-align:left; }
+.row>*{min-width:0}
 
-#feedback { min-height:25px; }
+.pill{background:#f4eee3;border-radius:20px;padding:5px 9px;
 
-.progressbar { height:8px; background:#263a29; border-radius:8px; overflow:hidden; margin:12px 0; }
+font-size:12px}
 
-.progressbar div { height:100%; background:var(--green); width:0; transition:width .3s; }
+[hidden]{display:none!important}
 
-.map-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+footer{text-align:center;padding:30px;color:#8b8173}
 
-.map-card { background:#10251a; border:1px solid var(--border); border-radius:12px; padding:15px; }
+@keyframes wash{0%,100%{transform:translate(0,0) rotate(0)}
 
-footer { text-align:center; padding:25px; color:#8da08b; }
+50%{transform:translate(8px,-7px) rotate(3deg)}}
 
-@media(max-width:600px) {
+.wash{animation:wash 5s ease-in-out infinite}
 
-  header { padding:12px; }
+@media(max-width:750px){
 
-  .logo { font-size:20px; }
+ header{align-items:flex-start;flex-direction:column}
 
-  nav { top:55px; gap:4px; padding:8px 4px; }
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-  nav button { font-size:11px; padding:9px 7px; }
+ .editor{grid-template-columns:1fr}
 
-  main { padding:10px; }
+ .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 
-  .hero { padding:20px; min-height:320px; }
+ .side button{text-align:center;padding:8px 3px;font-size:12px}
 
-  .card { padding:15px; }
+ main{padding:15px 10px}
 
 }
 
@@ -168,725 +156,986 @@ footer { text-align:center; padding:25px; color:#8da08b; }
 
 <header>
 
-  <div class="logo">L.D.C.<small>DINO WORLD</small></div>
+  <div class="logo">Animate <span>& Decorate</span> ✿</div>
 
-  <div class="balance">🦴 <span id="balance">0</span></div>
+  <nav>
+
+    <button onclick="page('home')">Home</button>
+
+    <button onclick="page('online')">Online</button>
+
+    <button onclick="page('game')">Make a Game</button>
+
+    <button onclick="page('site')">Make a Site</button>
+
+    <button onclick="page('story')">Make a Story</button>
+
+    <button class="primary" onclick="page('account')" id="accountBtn">Inloggen</button>
+
+  </nav>
 
 </header>
 
-<nav>
-
-  <button class="active" data-page="home">🏠 Home</button>
-
-  <button data-page="quiz">🌲 Op stap</button>
-
-  <button data-page="map">🌍 Wereldkaart</button>
-
-  <button data-page="shop">🦖 Dino's</button>
-
-  <button data-page="collection">🎒 Collectie</button>
-
-</nav>
-
 <main>
 
-<section id="home" class="page active">
+<section id="home">
 
   <div class="hero">
 
-    <div class="eyebrow">THE PREHISTORIC ADVENTURE</div>
+    <div class="wash" style="font-size:30px">🎨 ✨ 🦋</div>
 
-    <h1>Betreed de<br>verloren wereld.</h1>
+    <h1>Jouw ideeën.<br><span class="paint">Jouw wereld.</span></h1>
 
-    <p>Ontdek dinosaurussen, beantwoord vragen en verdien fossielen.</p>
+    <p>Maak games, bouw websites en schrijf verhalen.
 
-    <div><button class="primary" onclick="showPage('quiz')">Start avontuur →</button></div>
+    Geef je fantasie alle ruimte, één kleurrijke creatie tegelijk.</p>
 
-  </div>
+    <div class="row">
 
-  <div class="grid" style="margin-top:18px">
+      <button class="primary" onclick="page('game')">＋ Maak een game</button>
 
-    <div class="card">
+      <button onclick="page('site')">Maak een website ↗</button>
 
-      <div class="dino-icon">🌲</div><h2>Op stap</h2>
-
-      <p>Beantwoord 208 vragen. Elk goed antwoord levert 3 fossielen op.</p>
-
-      <button onclick="showPage('quiz')">Spelen</button>
-
-    </div>
-
-    <div class="card">
-
-      <div class="dino-icon">🌍</div><h2>Wereldkaart</h2>
-
-      <p>Ontdek landen waar dinosaurusfossielen zijn gevonden.</p>
-
-      <button onclick="showPage('map')">Ontdekken</button>
-
-    </div>
-
-    <div class="card">
-
-      <div class="dino-icon">🦖</div><h2>Dino-winkel</h2>
-
-      <p>Koop nieuwe dinosaurussen met je fossielen.</p>
-
-      <button onclick="showPage('shop')">Winkelen</button>
+      <button onclick="page('story')">Schrijf een verhaal</button>
 
     </div>
 
   </div>
 
-  <div class="card">
+  <h2 style="margin-top:28px">Wat ga je maken?</h2>
 
-    <h2>📊 Jouw avontuur</h2>
+  <div class="cards">
 
-    <span class="stat">🦴 <span id="homeFossils">0</span> fossielen</span>
+    <button class="card" onclick="page('game')"><span class="emoji">🎮</span><b>Make a Game</b><small>Bouw levels, vormen en platformgames.</small></button>
 
-    <span class="stat">🦖 <span id="ownedCount">1</span> dino's</span>
+    <button class="card" onclick="page('site')"><span class="emoji">🖥️</span><b>Make a Site</b><small>Ontwerp pagina's en interactieve knoppen.</small></button>
 
-    <span class="stat">❓ <span id="answeredCount">0</span>/208 vragen goed</span>
+    <button class="card" onclick="page('story')"><span class="emoji">📖</span><b>Make a Story</b><small>Schrijf verhalen met illustraties.</small></button>
 
-    <span class="stat">🎁 <span id="rewardCount">0</span> beloningen</span>
+    <button class="card" onclick="page('online')"><span class="emoji">🌍</span><b>Online</b><small>Ontdek voorbeeldprojecten.</small></button>
+
+  </div>
+
+  <div class="panel">
+
+    <b>🌱 Alles begint met een idee.</b>
+
+    <p class="muted" style="margin:7px 0 0">Je kunt eerst experimenteren.
+
+    Voor echte accounts en het online delen van projecten is later
+
+    een beveiligde server nodig.</p>
 
   </div>
 
 </section>
 
-<section id="quiz" class="page">
+<section id="game" hidden>
 
-  <div class="card">
+  <h1>🎮 Make a Game</h1>
 
-    <div class="eyebrow">🌲 EXPEDITIE</div>
+  <p class="muted">Voeg vormen toe, sleep ze rond en maak je eigen level.</p>
 
-    <h2>De dinoquiz</h2>
+  <div class="toolbar">
 
-    <p id="progress">Vraag 1 van 208</p>
+    <input class="field" id="gameName" value="Mijn eerste level"
 
-    <div class="progressbar"><div id="quizProgress"></div></div>
+    aria-label="Naam van je level" style="width:210px;margin:0">
 
-    <h3 id="question"></h3>
+    <button onclick="undo()">↶ Ongedaan</button>
 
-    <div id="answers" class="answers"></div>
+    <button onclick="copyObject()">Kopieer</button>
 
-    <p id="feedback" aria-live="polite"></p>
+    <button onclick="pasteObject()">Plak</button>
 
-    <button id="next" class="primary" hidden onclick="nextQuestion()">Volgende vraag →</button>
+    <button onclick="removeObject()">Verwijder</button>
 
-    <button id="restartQuiz" hidden onclick="restartQuiz()">Quiz opnieuw spelen</button>
+    <button onclick="rotateObject()">↻ Draai</button>
+
+    <button onclick="toggleHits()" id="hitBtn">Show hitboxes</button>
+
+    <button onclick="togglePlay()" id="playBtn" class="primary">▶ Test game</button>
+
+  </div>
+
+  <div class="editor">
+
+    <aside class="side panel">
+
+      <b>Object toevoegen</b>
+
+      <button onclick="add('rect')">▰ Cube / blok</button>
+
+      <button onclick="add('circle')">● Rondje</button>
+
+      <button onclick="add('triangle')">▲ Driehoek</button>
+
+      <button onclick="add('star')">★ Ster</button>
+
+      <button onclick="add('diamond')">◆ Diamant</button>
+
+      <button onclick="add('platform')">▬ Platform</button>
+
+      <button onclick="add('decor')">✿ Decoratie (geen hitbox)</button>
+
+      <button onclick="add('hitbox')">▧ Losse hitbox</button>
+
+      <hr style="border:0;border-top:1px solid var(--line);width:100%">
+
+      <b>Instellingen</b>
+
+      <label>Kleur</label>
+
+      <input type="color" id="objColor" value="#f5b8c9"
+
+      class="field" onchange="changeColor()">
+
+      <label>Hitbox</label>
+
+      <select id="objHit" class="field" onchange="changeHit()">
+
+        <option value="yes">Aan</option>
+
+        <option value="no">Uit</option>
+
+      </select>
+
+      <label>Grootte</label>
+
+      <input type="range" min="15" max="130" value="55"
+
+      id="objSize" class="field" oninput="resizeObject()">
+
+      <button onclick="animateObject()">↝ Animeer object</button>
+
+      <button onclick="stopAnimation()">■ Stop animatie</button>
+
+      <button onclick="exportLevel()">⇩ Download level JSON</button>
+
+    </aside>
+
+    <div class="workspace">
+
+      <div class="panel">
+
+        <canvas id="gameCanvas" width="800" height="440"></canvas>
+
+        <div class="toolbar">
+
+          <span class="pill" id="modeLabel">Bewerkmodus</span>
+
+          <span class="pill" id="objectCount">0 objecten</span>
+
+          <span class="pill">← → bewegen · spatie springen</span>
+
+        </div>
+
+        <p class="muted">Klik op een object om het te selecteren.
+
+        Sleep het om te verplaatsen. Klik op de achtergrond om een
+
+        selectie te wissen.</p>
+
+      </div>
+
+      <div class="panel">
+
+        <b>Geselecteerd object</b>
+
+        <div id="selectedInfo" class="muted">Selecteer een object op het canvas.</div>
+
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
-<section id="map" class="page">
+<section id="site" hidden>
 
-  <div class="card">
+  <h1>🖥️ Make a Site</h1>
 
-    <h2>🌍 De wereldkaart</h2>
+  <p class="muted">Bouw een eenvoudige website met tekst, afbeeldingen en knoppen.</p>
 
-    <p>Bekijk de bekende landen en vindplaatsen van dinosaurussen.</p>
+  <div class="editor">
 
-    <div id="mapList" class="map-grid"></div>
+    <div class="panel">
 
-    <p class="small">De landen zijn vereenvoudigde vindplaatsinformatie. De hybride dinosaurussen uit Jurassic World zijn fictief.</p>
+      <b>Onderdelen</b>
+
+      <button onclick="addSite('heading')">＋ Koptekst</button>
+
+      <button onclick="addSite('text')">＋ Tekst</button>
+
+      <button onclick="addSite('button')">＋ Knop</button>
+
+      <button onclick="addSite('image')">＋ Afbeelding</button>
+
+      <button onclick="addSite('paint')">＋ Verfvlek</button>
+
+      <button onclick="exportSite()">Download HTML</button>
+
+      <p class="muted" style="margin-top:15px">Selecteer een onderdeel om het aan te passen.</p>
+
+      <label>Tekst of knoplabel</label>
+
+      <input class="field" id="siteText" placeholder="Mijn tekst"
+
+      oninput="updateSiteText()">
+
+      <label>Knopactie</label>
+
+      <select class="field" id="siteAction" onchange="updateSiteText()">
+
+        <option value="alert">Toon een bericht</option>
+
+        <option value="next">Ga naar volgende onderdeel</option>
+
+      </select>
+
+    </div>
+
+    <div class="panel" id="sitePreview">
+
+      <div id="siteItems"></div>
+
+    </div>
 
   </div>
 
 </section>
 
-<section id="shop" class="page">
+<section id="story" hidden>
 
-  <h2>🦖 Dino-winkel</h2>
+  <h1>📖 Make a Story</h1>
 
-  <p>Je begint met 0 fossielen. Verdien fossielen met de quiz.</p>
+  <p class="muted">Schrijf je eigen verhaal en voeg een illustratie toe.</p>
 
-  <div id="shopGrid" class="grid"></div>
+  <div class="panel">
+
+    <label>Titel</label>
+
+    <input class="field" id="storyTitle" placeholder="De magische verftuin">
+
+    <label>Jouw verhaal</label>
+
+    <textarea class="field" id="storyText"
+
+    placeholder="Er was eens een wereld waarin verf tot leven kwam..."></textarea>
+
+    <label>Illustratie toevoegen</label>
+
+    <input type="file" id="storyImage" accept="image/*" class="field">
+
+    <label>Beweging</label>
+
+    <select id="storyMotion" class="field">
+
+      <option value="none">Geen animatie</option>
+
+      <option value="float">Zweven</option>
+
+      <option value="fade">Vervagen</option>
+
+    </select>
+
+    <button class="primary" onclick="previewStory()">Bekijk verhaal</button>
+
+    <button onclick="downloadStory()">Download verhaal</button>
+
+  </div>
+
+  <div class="panel" id="storyPreview">
+
+    <h2>Jouw verhaal verschijnt hier</h2>
+
+  </div>
 
 </section>
 
-<section id="collection" class="page">
+<section id="online" hidden>
 
-  <h2>🎒 Mijn collectie</h2>
+  <h1>🌍 Online ontdekken</h1>
 
-  <p id="collectionIntro"></p>
+  <p>Bekijk voorbeelden van games, websites en verhalen.
 
-  <div id="collectionGrid" class="grid"></div>
+  Dit zijn demonstratieprojecten, geen echte uploads van gebruikers.</p>
+
+  <div class="toolbar">
+
+    <button onclick="filterOnline('Alle')">Alles</button>
+
+    <button onclick="filterOnline('Game')">Games</button>
+
+    <button onclick="filterOnline('Site')">Websites</button>
+
+    <button onclick="filterOnline('Verhaal')">Verhalen</button>
+
+  </div>
+
+  <div id="onlineCards" class="cards"></div>
+
+  <div class="panel">
+
+    <b>👥 Vrienden</b>
+
+    <p class="muted">Log in om de toekomstige vriendenfunctie te verkennen.</p>
+
+    <button onclick="page('account')">Account bekijken</button>
+
+  </div>
+
+</section>
+
+<section id="account" hidden>
+
+  <h1>👋 Welkom bij Animate and Decorate</h1>
+
+  <div class="panel" style="max-width:480px">
+
+    <div class="toolbar">
+
+      <button onclick="accountMode('login')" id="loginTab" class="active">Inloggen</button>
+
+      <button onclick="accountMode('register')" id="registerTab">Account maken</button>
+
+    </div>
+
+    <form id="accountForm">
+
+      <label>E-mailadres</label>
+
+      <input class="field" type="email" id="email" required
+
+      autocomplete="email" placeholder="jij@voorbeeld.nl">
+
+      <label>Nickname</label>
+
+      <input class="field" id="nickname" required minlength="2"
+
+      maxlength="24" placeholder="Jouw unieke nickname"
+
+      autocomplete="nickname">
+
+      <label>Wachtwoord</label>
+
+      <input class="field" type="password" id="password" required
+
+      minlength="8" autocomplete="current-password"
+
+      placeholder="Minimaal 8 tekens">
+
+      <button class="primary" type="submit" id="accountSubmit">Inloggen</button>
+
+    </form>
+
+    <p class="muted" style="margin-top:12px">
+
+      Demo: dit formulier maakt nog geen echt account aan.
+
+      Gebruik hier geen echt wachtwoord.
+
+    </p>
+
+    <div id="accountMessage" role="status"></div>
+
+    <button onclick="logout()">Uitloggen uit demo</button>
+
+  </div>
 
 </section>
 
 </main>
 
-<footer>L.D.C. DINO WORLD · EXPLORE THE UNKNOWN</footer>
+<footer>Animate and Decorate ✿ — Make something wonderful.</footer>
 
 <script>
 
-"use strict";
+const $ = id => document.getElementById(id);
 
-/* Nieuwe opslagnaam: de game begint schoon op 0 fossielen. */
+let currentPage='home', objects=[], selected=null, clipboard=null;
 
-const SAVE_KEY = "ldc-dino-world-fresh-v1";
+let showHits=false, playing=false, animating=false, frame=0;
 
-const dinos = [
+let historyStack=[], keys={}, player={x:55,y:330,vx:0,vy:0,onGround:false};
 
- {id:"compy",name:"Compsognathus",price:5,emoji:"🦎",country:"Duitsland",era:"Laat-Jura",info:"Een kleine vleesetende dinosaurus."},
+let accountKind='login', demoUser=null, siteItems=[], siteSelected=null;
 
- {id:"para",name:"Parasaurolophus",price:15,emoji:"🦕",country:"Canada",era:"Laat-Krijt",info:"Een planteneter met een opvallende kopkam."},
+let storyImageUrl=null, onlineFilter='Alle';
 
- {id:"stego",name:"Stegosaurus",price:25,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Jura",info:"Een planteneter met grote rugplaten."},
+const canvas=$('gameCanvas'), ctx=canvas.getContext('2d');
 
- {id:"raptor",name:"Velociraptor",price:50,emoji:"🦎",country:"Mongolië",era:"Laat-Krijt",info:"Een kleine gevederde roofdinosaurus."},
+const colors=['#f5b8c9','#b8dff0','#c9e5bb','#f7df8b','#d9c8f3','#efb28e'];
 
- {id:"trike",name:"Triceratops",price:80,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Krijt",info:"Een planteneter met drie hoorns."},
+function page(name){
 
- {id:"spino",name:"Spinosaurus",price:150,emoji:"🦖",country:"Egypte",era:"Krijt",info:"Een grote roofdinosaurus met een rugzeil."},
+  currentPage=name;
 
- {id:"trex",name:"Tyrannosaurus rex",price:250,emoji:"🦖",country:"Verenigde Staten",era:"Laat-Krijt",info:"Een grote roofdinosaurus."},
+  ['home','game','site','story','online','account'].forEach(
 
- {id:"indoraptor",name:"Indoraptor",price:500,emoji:"🐲",country:"Fictief",era:"Fictief",info:"Een hybride uit Jurassic World."},
+    id=>$(id).hidden=id!==name
 
- {id:"indominus",name:"Indominus rex",price:450,emoji:"🦖",country:"Fictief",era:"Fictief",info:"Een genetisch ontworpen hybride."},
+  );
 
- {id:"brachio",name:"Brachiosaurus",price:110,emoji:"🦕",country:"Verenigde Staten",era:"Laat-Jura",info:"Een enorme planteneter met een lange nek."},
+  if(name==='game')draw();
 
- {id:"ankylo",name:"Ankylosaurus",price:95,emoji:"🦖",country:"Canada",era:"Laat-Krijt",info:"Een gepantserde planteneter met staartknots."},
+  if(name==='online')renderOnline();
 
- {id:"allo",name:"Allosaurus",price:65,emoji:"🦖",country:"Verenigde Staten",era:"Laat-Jura",info:"Een grote roofdinosaurus uit het Jura."},
-
- {id:"amarga",name:"Amargasaurus",price:130,emoji:"🦕",country:"Argentinië",era:"Vroeg-Krijt",info:"Een langnekdinosaurus met opvallende nekrugstekels."}
-
-];
-
-const facts = [
-
- ["Compsognathus","vleeseter","Laat-Jura","Duitsland","een klein lichaam"],
-
- ["Parasaurolophus","planteneter","Laat-Krijt","Canada","een lange holle kopkam"],
-
- ["Stegosaurus","planteneter","Laat-Jura","Verenigde Staten","grote platen op de rug"],
-
- ["Velociraptor","vleeseter","Laat-Krijt","Mongolië","een grote sikkelklauw"],
-
- ["Triceratops","planteneter","Laat-Krijt","Verenigde Staten","drie hoorns"],
-
- ["Spinosaurus","vleeseter","Krijt","Noord-Afrika","een opvallend rugzeil"],
-
- ["Tyrannosaurus rex","vleeseter","Laat-Krijt","Verenigde Staten","enorme kaken en kleine armen"],
-
- ["Brachiosaurus","planteneter","Laat-Jura","Verenigde Staten","lange voorpoten en een lange nek"],
-
- ["Ankylosaurus","planteneter","Laat-Krijt","Canada","een gepantserd lichaam en staartknots"],
-
- ["Allosaurus","vleeseter","Laat-Jura","Verenigde Staten","een grote schedel met scherpe tanden"],
-
- ["Amargasaurus","planteneter","Vroeg-Krijt","Argentinië","lange stekels op de nek"],
-
- ["Diplodocus","planteneter","Laat-Jura","Verenigde Staten","een uitzonderlijk lange staart"],
-
- ["Apatosaurus","planteneter","Laat-Jura","Verenigde Staten","een zwaar lichaam en lange nek"],
-
- ["Carnotaurus","vleeseter","Laat-Krijt","Argentinië","twee hoorns boven de ogen"],
-
- ["Iguanodon","planteneter","Vroeg-Krijt","België","duimstekels"],
-
- ["Pachycephalosaurus","planteneter","Laat-Krijt","Verenigde Staten","een dikke koepelvormige schedel"],
-
- ["Giganotosaurus","vleeseter","Laat-Krijt","Argentinië","een enorme schedel"],
-
- ["Carcharodontosaurus","vleeseter","Krijt","Noord-Afrika","zaagtandachtige tanden"],
-
- ["Deinonychus","vleeseter","Vroeg-Krijt","Verenigde Staten","een grote sikkelklauw aan de voet"],
-
- ["Dilophosaurus","vleeseter","Vroeg-Jura","Verenigde Staten","twee kammen op de schedel"],
-
- ["Gallimimus","waarschijnlijk alleseter","Laat-Krijt","Mongolië","lange poten om snel te rennen"],
-
- ["Oviraptor","waarschijnlijk alleseter","Laat-Krijt","Mongolië","een tandeloze snavel"],
-
- ["Protoceratops","planteneter","Laat-Krijt","Mongolië","een kleine nekkraag"],
-
- ["Therizinosaurus","waarschijnlijk planteneter","Laat-Krijt","Mongolië","enorme gebogen klauwen"],
-
- ["Utahraptor","vleeseter","Vroeg-Krijt","Verenigde Staten","grote sikkelklauwen"],
-
- ["Microraptor","vleeseter","Vroeg-Krijt","China","veren aan armen en benen"],
-
- ["Archaeopteryx","vleeseter","Laat-Jura","Duitsland","veren en tanden"],
-
- ["Psittacosaurus","planteneter","Vroeg-Krijt","China","een papegaaiachtige snavel"],
-
- ["Styracosaurus","planteneter","Laat-Krijt","Canada","lange hoorns aan de nekkraag"],
-
- ["Pachyrhinosaurus","planteneter","Laat-Krijt","Canada","een verdikte benige neusknobbel"],
-
- ["Edmontosaurus","planteneter","Laat-Krijt","Canada","een brede snavel"],
-
- ["Maiasaura","planteneter","Laat-Krijt","Verenigde Staten","aanwijzingen voor ouderlijke zorg"],
-
- ["Corythosaurus","planteneter","Laat-Krijt","Canada","een helmachtige kopkam"],
-
- ["Lambeosaurus","planteneter","Laat-Krijt","Canada","een holle kopkam"],
-
- ["Kentrosaurus","planteneter","Laat-Jura","Tanzania","stekels op rug en staart"],
-
- ["Plateosaurus","planteneter","Laat-Trias","Duitsland","een lange nek en grijphanden"],
-
- ["Coelophysis","vleeseter","Laat-Trias","Verenigde Staten","een slank lichaam"],
-
- ["Herrerasaurus","vleeseter","Laat-Trias","Argentinië","een vroege grote roofdinosaurus"],
-
- ["Eoraptor","waarschijnlijk alleseter","Laat-Trias","Argentinië","een klein lichaam en lange staart"],
-
- ["Mussaurus","planteneter","Vroeg-Jura","Argentinië","een lange nek en lange staart"],
-
- ["Riojasaurus","planteneter","Laat-Trias","Argentinië","een stevig lichaam en sterke poten"],
-
- ["Saltasaurus","planteneter","Laat-Krijt","Argentinië","kleine benige platen in de huid"],
-
- ["Argentinosaurus","planteneter","Laat-Krijt","Argentinië","een van de grootste bekende landdieren"],
-
- ["Dreadnoughtus","planteneter","Laat-Krijt","Argentinië","een enorm sauropodenlichaam"],
-
- ["Mamenchisaurus","planteneter","Laat-Jura","China","een bijzonder lange nek"],
-
- ["Shunosaurus","planteneter","Laat-Jura","China","een knotsvormig uiteinde van de staart"],
-
- ["Mononykus","vleeseter","Laat-Krijt","Mongolië","zeer korte armen met één grote klauw"],
-
- ["Baryonyx","vleeseter","Vroeg-Krijt","Engeland","een grote klauw aan de voorpoot"],
-
- ["Suchomimus","vleeseter","Vroeg-Krijt","Niger","een lange krokodilachtige snuit"],
-
- ["Ouranosaurus","planteneter","Vroeg-Krijt","Niger","een hoge rug met lange doornuitsteeksels"]
-
-];
-
-function shuffle(arr) {
-
- const a=[...arr];
-
- for(let i=a.length-1;i>0;i--) {
-
-  const j=Math.floor(Math.random()*(i+1));
-
-  [a[i],a[j]]=[a[j],a[i]];
-
- }
-
- return a;
+  if(name==='site')renderSite();
 
 }
 
-function makeQuestion(id,q,correct,pool,why) {
+function snapshot(){
 
- const distractors=shuffle([...new Set(pool.filter(x=>x!==correct))]).slice(0,2);
+  historyStack.push(JSON.stringify(objects));
 
- const a=shuffle([correct,...distractors]);
-
- return {id,q,a,correct:a.indexOf(correct),why};
+  if(historyStack.length>40)historyStack.shift();
 
 }
 
-const questions = [
+function undo(){
 
- {id:"q1",q:"In welke periode leefde de T. rex?",a:["Jura","Krijt","Trias"],correct:1,why:"T. rex leefde aan het einde van het Krijt."},
+  if(!historyStack.length)return;
 
- {id:"q2",q:"Wat at Triceratops voornamelijk?",a:["Planten","Vis","Andere grote dino's"],correct:0,why:"Triceratops was een planteneter."},
+  objects=JSON.parse(historyStack.pop());
 
- {id:"q3",q:"Waar zijn fossielen van Velociraptor gevonden?",a:["Nederland","Mongolië","Brazilië"],correct:1,why:"Velociraptor is bekend van fossielen uit Mongolië."},
+  selected=objects[objects.length-1]?.id??null;draw();
 
- {id:"q4",q:"Welke dinosaurus had grote platen op zijn rug?",a:["Stegosaurus","T. rex","Compsognathus"],correct:0,why:"Stegosaurus had grote rugplaten."},
+}
 
- {id:"q5",q:"In welk werelddeel zijn fossielen van Spinosaurus gevonden?",a:["Europa","Noord-Amerika","Afrika"],correct:2,why:"Spinosaurus is bekend uit Noord-Afrika."},
+function add(type){
 
- {id:"q6",q:"Welke dinosaurus had drie hoorns?",a:["Velociraptor","Triceratops","Brachiosaurus"],correct:1,why:"Triceratops had drie hoorns."},
+  snapshot();
 
- {id:"q7",q:"Welke dinosaurus is een fictieve hybride?",a:["Indoraptor","Stegosaurus","Triceratops"],correct:0,why:"Indoraptor komt uit Jurassic World."},
+  const o={id:crypto.randomUUID(),type,x:300+Math.random()*120,
 
- {id:"q8",q:"Waarvoor diende de staartknots van Ankylosaurus waarschijnlijk?",a:["Verdediging","Vliegen","Ademen"],correct:0,why:"De staartknots kon waarschijnlijk dienen voor verdediging."}
+    y:150+Math.random()*90,w:type==='platform'?150:55,
 
-];
+    h:type==='platform'?18:55,rotation:0,color:colors[objects.length%colors.length],
 
-const eras=[...new Set(facts.map(d=>d[2]))];
+    hitbox:!['decor','hitbox'].includes(type),decor:type==='decor',
 
-const countries=[...new Set(facts.map(d=>d[3]))];
+    vx:0,vy:0};
 
-const diets=[...new Set(facts.map(d=>d[1]))];
+  if(type==='hitbox')o.hitbox=true;
 
-const features=[...new Set(facts.map(d=>d[4]))];
+  objects.push(o);selected=o.id;syncSettings();draw();
 
-facts.forEach((d,i)=>{
+}
 
- const [name,diet,era,country,feature]=d;
+function getSelected(){return objects.find(o=>o.id===selected)}
 
- const n=String(i+1).padStart(3,"0");
+function syncSettings(){
 
- questions.push(
+  const o=getSelected();
 
-  makeQuestion("diet"+n,"Wat at de "+name+" voornamelijk?",diet,diets,name+" was "+diet+"."),
+  if(!o){$('selectedInfo').textContent='Selecteer een object.';return}
 
-  makeQuestion("era"+n,"In welke periode leefde de "+name+"?",era,eras,name+" leefde in de periode "+era+"."),
+  $('objColor').value=o.color;
 
-  makeQuestion("country"+n,"In welk huidig land of gebied zijn fossielen van de "+name+" gevonden?",country,countries,"Fossielen van "+name+" zijn bekend uit "+country+"."),
+  $('objHit').value=o.hitbox?'yes':'no';
 
-  makeQuestion("feature"+n,"Welk kenmerk past bij de "+name+"?",feature,features,"Een herkenbaar kenmerk is "+feature+".")
+  $('objSize').value=o.w;
 
- );
+  $('selectedInfo').textContent=`${o.type} · x ${Math.round(o.x)} · y ${Math.round(o.y)} · ${o.hitbox?'hitbox aan':'geen hitbox'}`;
+
+}
+
+function changeColor(){const o=getSelected();if(o){snapshot();o.color=$('objColor').value;draw()}}
+
+function changeHit(){const o=getSelected();if(o){snapshot();o.hitbox=$('objHit').value==='yes';draw()}}
+
+function resizeObject(){const o=getSelected();if(o){o.w=+$('objSize').value;o.h=o.type==='platform'?18:o.w;draw()}}
+
+function rotateObject(){const o=getSelected();if(o){snapshot();o.rotation=(o.rotation+15)%360;draw()}}
+
+function copyObject(){const o=getSelected();if(o)clipboard=JSON.parse(JSON.stringify(o))}
+
+function pasteObject(){
+
+  if(!clipboard)return;snapshot();
+
+  const o={...clipboard,id:crypto.randomUUID(),x:clipboard.x+25,y:clipboard.y+25};
+
+  objects.push(o);selected=o.id;draw()
+
+}
+
+function removeObject(){
+
+  snapshot();objects=objects.filter(o=>o.id!==selected);
+
+  selected=null;draw();syncSettings()
+
+}
+
+function toggleHits(){showHits=!showHits;$('hitBtn').classList.toggle('active',showHits);draw()}
+
+function animateObject(){animating=true}
+
+function stopAnimation(){animating=false;draw()}
+
+function exportLevel(){
+
+  const data={name:$('gameName').value,objects};
+
+  download(JSON.stringify(data,null,2),'level.json','application/json')
+
+}
+
+function download(content,name,type){
+
+  const blob=new Blob([content],{type});
+
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+
+  a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
+
+}
+
+function shape(o){
+
+  ctx.save();ctx.translate(o.x+o.w/2,o.y+o.h/2);
+
+  ctx.rotate(o.rotation*Math.PI/180);
+
+  ctx.fillStyle=o.color;ctx.strokeStyle='#574d48';ctx.lineWidth=2;
+
+  ctx.beginPath();
+
+  if(o.type==='circle')ctx.ellipse(0,0,o.w/2,o.h/2,0,0,Math.PI*2);
+
+  else if(o.type==='triangle'){
+
+    ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,o.h/2);
+
+    ctx.lineTo(-o.w/2,o.h/2);ctx.closePath()
+
+  }else if(o.type==='star'){
+
+    for(let i=0;i<10;i++){
+
+      const r=i%2?o.w*.22:o.w*.48,a=-Math.PI/2+i*Math.PI/5;
+
+      const x=Math.cos(a)*r,y=Math.sin(a)*r;
+
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y)
+
+    }ctx.closePath()
+
+  }else if(o.type==='diamond'){
+
+    ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,0);
+
+    ctx.lineTo(0,o.h/2);ctx.lineTo(-o.w/2,0);ctx.closePath()
+
+  }else if(o.type==='decor'){
+
+    ctx.arc(0,0,o.w/2,0,Math.PI*2)
+
+  }else{
+
+    ctx.rect(-o.w/2,-o.h/2,o.w,o.h)
+
+  }
+
+  ctx.fill();
+
+  if(o.type!=='decor')ctx.stroke();
+
+  if(o.type==='decor'){
+
+    ctx.strokeStyle='#bd6d8b';ctx.lineWidth=4;
+
+    ctx.beginPath();ctx.arc(0,0,o.w*.24,0,Math.PI*1.7);ctx.stroke()
+
+  }
+
+  ctx.restore();
+
+}
+
+function draw(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle='#fffdf7';ctx.fillRect(0,0,800,440);
+
+  ctx.strokeStyle='#f0e8dc';ctx.lineWidth=1;
+
+  for(let x=0;x<800;x+=25){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,440);ctx.stroke()}
+
+  for(let y=0;y<440;y+=25){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(800,y);ctx.stroke()}
+
+  objects.forEach(o=>{
+
+    ctx.save();
+
+    if(animating&&o.id===selected){
+
+      o.x+=Math.sin(frame/20)*.7;
+
+      o.y+=Math.cos(frame/24)*.4
+
+    }
+
+    shape(o);
+
+    if(showHits&&o.hitbox){
+
+      ctx.strokeStyle='#e34c55';ctx.lineWidth=2;ctx.setLineDash([5,4]);
+
+      ctx.strokeRect(o.x,o.y,o.w,o.h);ctx.setLineDash([])
+
+    }
+
+    if(o.id===selected){
+
+      ctx.strokeStyle='#39352e';ctx.lineWidth=2;
+
+      ctx.setLineDash([4,3]);ctx.strokeRect(o.x-4,o.y-4,o.w+8,o.h+8);
+
+      ctx.setLineDash([])
+
+    }
+
+    ctx.restore()
+
+  });
+
+  if(playing)drawPlayer();
+
+  $('objectCount').textContent=objects.length+' objecten';
+
+  syncSettings();
+
+}
+
+function drawPlayer(){
+
+  ctx.fillStyle='#7b68b5';ctx.fillRect(player.x,player.y,25,36);
+
+  ctx.fillStyle='white';ctx.fillRect(player.x+5,player.y+7,5,5);
+
+  ctx.fillRect(player.x+15,player.y+7,5,5);
+
+}
+
+function intersects(o,x,y){
+
+  return x>=o.x-5&&x<=o.x+o.w+5&&y>=o.y-5&&y<=o.y+o.h+5
+
+}
+
+let drag=null;
+
+canvas.addEventListener('pointerdown',e=>{
+
+  if(playing)return;
+
+  const r=canvas.getBoundingClientRect();
+
+  const x=(e.clientX-r.left)*canvas.width/r.width;
+
+  const y=(e.clientY-r.top)*canvas.height/r.height;
+
+  const o=[...objects].reverse().find(o=>intersects(o,x,y));
+
+  if(o){selected=o.id;snapshot();drag={x,y,ox:o.x,oy:o.y};canvas.setPointerCapture(e.pointerId)}
+
+  else selected=null;
+
+  draw()
 
 });
 
-// 8 + (50 x 4) = 208 vragen.
+canvas.addEventListener('pointermove',e=>{
 
-let fossils=0;
+  if(!drag)return;
 
-let owned=["compy"];
+  const r=canvas.getBoundingClientRect();
 
-let answered=[];
+  const x=(e.clientX-r.left)*canvas.width/r.width;
 
-let qi=0;
+  const y=(e.clientY-r.top)*canvas.height/r.height;
 
-let locked=false;
-
-// Deze game begint bewust helemaal opnieuw.
-
-try {
-
- localStorage.removeItem(SAVE_KEY);
-
-} catch(e) {}
-
-function save() {
-
- try {
-
-  localStorage.setItem(SAVE_KEY,JSON.stringify({fossils,owned,answered,qi}));
-
- } catch(e) {
-
-  console.warn("Opslaan niet mogelijk.",e);
-
- }
-
- updateStats();
-
- renderShop();
-
- renderCollection();
-
-}
-
-function updateStats() {
-
- document.getElementById("balance").textContent=fossils;
-
- document.getElementById("homeFossils").textContent=fossils;
-
- document.getElementById("ownedCount").textContent=owned.length;
-
- document.getElementById("answeredCount").textContent=answered.length;
-
- document.getElementById("rewardCount").textContent=answered.length;
-
- document.getElementById("collectionIntro").textContent=
-
-  "Je hebt "+owned.length+" dinosaurus in je collectie.";
-
-}
-
-function showPage(id) {
-
- document.querySelectorAll(".page").forEach(el=>
-
-  el.classList.toggle("active",el.id===id)
-
- );
-
- document.querySelectorAll("nav button").forEach(el=>
-
-  el.classList.toggle("active",el.dataset.page===id)
-
- );
-
- window.scrollTo({top:0,behavior:"smooth"});
-
- if(id==="quiz")renderQuestion();
-
- if(id==="map")renderMap();
-
-}
-
-document.querySelectorAll("nav button").forEach(b=>{
-
- b.addEventListener("click",()=>showPage(b.dataset.page));
+  const o=getSelected();if(o){o.x=drag.ox+x-drag.x;o.y=drag.oy+y-drag.y;draw()}
 
 });
 
-function renderQuestion() {
+canvas.addEventListener('pointerup',()=>drag=null);
 
- locked=false;
+function togglePlay(){
 
- const q=questions[qi];
+  playing=!playing;
 
- document.getElementById("progress").textContent=
+  $('playBtn').textContent=playing?'■ Stop testen':'▶ Test game';
 
-  `Vraag ${qi+1} van ${questions.length}`;
+  $('modeLabel').textContent=playing?'Speelmodus':'Bewerkmodus';
 
- document.getElementById("quizProgress").style.width=
+  if(playing)player={x:35,y:320,vx:0,vy:0,onGround:false};
 
-  ((qi+1)/questions.length*100)+"%";
-
- document.getElementById("question").textContent=q.q;
-
- document.getElementById("feedback").textContent="";
-
- document.getElementById("next").hidden=true;
-
- document.getElementById("restartQuiz").hidden=true;
-
- const box=document.getElementById("answers");
-
- box.replaceChildren();
-
- q.a.forEach((a,i)=>{
-
-  const b=document.createElement("button");
-
-  b.textContent=String.fromCharCode(65+i)+" — "+a;
-
-  b.onclick=()=>answerQuestion(i);
-
-  box.appendChild(b);
-
- });
+  draw()
 
 }
 
-function answerQuestion(i) {
+window.addEventListener('keydown',e=>{
 
- if(locked)return;
+  if(['ArrowLeft','ArrowRight',' '].includes(e.key)&&playing)e.preventDefault();
 
- locked=true;
+  keys[e.key.toLowerCase()]=true;
 
- const q=questions[qi];
+  if(e.key==='Delete'&&currentPage==='game'&&!playing)removeObject();
 
- const feedback=document.getElementById("feedback");
+  if(e.key==='Escape'&&playing)togglePlay()
 
- document.querySelectorAll("#answers button").forEach(b=>b.disabled=true);
+});
 
- if(i===q.correct) {
+window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 
-  // IEDER GOED ANTWOORD: altijd +3, ook bij herhaling.
+function loop(){
 
-  fossils+=3;
+  frame++;
 
-  if(!answered.includes(q.id))answered.push(q.id);
+  if(playing){
 
-  feedback.textContent="✅ Goed! Je krijgt 3 fossielen! "+q.why;
+    player.vx=keys.arrowleft||keys.a?-4:keys.arrowright||keys.d?4:0;
 
-  feedback.style.color="#a8e184";
+    if((keys[' ']||keys.arrowup||keys.w)&&player.onGround){player.vy=-10;player.onGround=false}
 
- } else {
+    player.vy+=.45;player.x+=player.vx;player.y+=player.vy;
 
-  feedback.textContent="❌ Helaas! "+q.why;
+    player.onGround=false;
 
-  feedback.style.color="#ff9b8b";
+    objects.filter(o=>o.hitbox&&o.type!=='decor').forEach(o=>{
 
- }
+      if(player.x+25>o.x&&player.x<o.x+o.w&&
 
- document.getElementById("next").hidden=false;
+        player.y+36>=o.y&&player.y+36<=o.y+o.h+Math.max(5,player.vy)&&player.vy>=0){
 
- document.getElementById("next").textContent=
+        player.y=o.y-36;player.vy=0;player.onGround=true
 
-  qi===questions.length-1?"Quiz afronden →":"Volgende vraag →";
+      }
 
- save();
+    });
 
-}
+    if(player.y>440){player.y=390;player.vy=0}
 
-function nextQuestion() {
+    player.x=Math.max(0,Math.min(775,player.x));
 
- if(qi>=questions.length-1) {
+    draw()
 
-  document.getElementById("question").textContent="🎉 Je hebt alle vragen doorlopen!";
+  }else if(animating)draw();
 
-  document.getElementById("answers").replaceChildren();
-
-  document.getElementById("feedback").textContent=
-
-   "Je hebt "+answered.length+" verschillende vragen goed beantwoord. Speel opnieuw om weer fossielen te verdienen!";
-
-  document.getElementById("next").hidden=true;
-
-  document.getElementById("restartQuiz").hidden=false;
-
-  return;
-
- }
-
- qi++;
-
- save();
-
- renderQuestion();
+  requestAnimationFrame(loop)
 
 }
 
-function restartQuiz() {
+add('platform');objects[0].x=100;objects[0].y=385;objects[0].w=600;objects[0].h=20;
 
- qi=0;
+add('star');objects[1].x=320;objects[1].y=260;
 
- save();
+add('circle');objects[2].x=490;objects[2].y=300;
 
- renderQuestion();
+draw();loop();
 
-}
+// Websitebouwer
 
-function renderShop() {
+function addSite(type){
 
- const box=document.getElementById("shopGrid");
+  const item={type,text:({heading:'Mijn creatieve wereld',text:'Welkom op mijn website!',button:'Klik mij',image:'Afbeelding toevoegen',paint:'✿'})[type],action:'alert'};
 
- if(!box)return;
-
- box.replaceChildren();
-
- dinos.forEach(d=>{
-
-  const card=document.createElement("article");
-
-  card.className="card";
-
-  const emoji=document.createElement("div");
-
-  emoji.className="dino-icon";
-
-  emoji.textContent=d.emoji;
-
-  const title=document.createElement("h3");
-
-  title.textContent=d.name;
-
-  const info=document.createElement("p");
-
-  info.textContent=d.info;
-
-  const price=document.createElement("p");
-
-  price.className="price";
-
-  price.textContent=d.price+" 🦴";
-
-  const btn=document.createElement("button");
-
-  const has=owned.includes(d.id);
-
-  btn.textContent=has?"✓ In collectie":"Koop dinosaurus";
-
-  btn.disabled=has||fossils<d.price;
-
-  btn.onclick=()=>{
-
-   if(owned.includes(d.id)||fossils<d.price)return;
-
-   fossils-=d.price;
-
-   owned.push(d.id);
-
-   save();
-
-  };
-
-  card.append(emoji,title,info,price,btn);
-
-  box.appendChild(card);
-
- });
+  siteItems.push(item);siteSelected=siteItems.length-1;renderSite()
 
 }
 
-function renderCollection() {
+function renderSite(){
 
- const box=document.getElementById("collectionGrid");
+  const root=$('siteItems');root.replaceChildren();
 
- if(!box)return;
+  siteItems.forEach((it,i)=>{
 
- box.replaceChildren();
+    const el=document.createElement('div');
 
- dinos.filter(d=>owned.includes(d.id)).forEach(d=>{
+    el.style.cssText='padding:12px;margin:8px 0;border:1px dashed #ddd;border-radius:10px';
 
-  const card=document.createElement("article");
+    if(it.type==='heading'){const h=document.createElement('h2');h.textContent=it.text;el.append(h)}
 
-  card.className="card";
+    if(it.type==='text'){const p=document.createElement('p');p.textContent=it.text;el.append(p)}
 
-  const emoji=document.createElement("div");
+    if(it.type==='paint'){const p=document.createElement('div');p.textContent='✿ '+it.text;p.style.cssText='font-size:40px;color:#d66c91';el.append(p)}
 
-  emoji.className="dino-icon";
+    if(it.type==='button'){const b=document.createElement('button');b.textContent=it.text;b.onclick=()=>it.action==='alert'?alert(it.text):root.children[i+1]?.scrollIntoView({behavior:'smooth'});el.append(b)}
 
-  emoji.textContent=d.emoji;
+    if(it.type==='image'){
 
-  const title=document.createElement("h3");
+      const label=document.createElement('label');label.textContent=it.text+' ';
 
-  title.textContent=d.name;
+      const input=document.createElement('input');input.type='file';input.accept='image/*';
 
-  const info=document.createElement("p");
+      input.onchange=()=>{const f=input.files[0];if(!f)return;
 
-  info.textContent=d.info;
+        const img=document.createElement('img');img.src=URL.createObjectURL(f);
 
-  card.append(emoji,title,info);
+        img.style.cssText='max-width:100%;border-radius:12px';el.append(img)};
 
-  box.appendChild(card);
+      label.append(input);el.append(label)
 
- });
+    }
 
- if(!box.children.length)box.textContent="Je collectie is nog leeg.";
+    el.onclick=e=>{if(e.target===el){siteSelected=i;$('siteText').value=it.text;$('siteAction').value=it.action}};
 
-}
+    root.append(el)
 
-function renderMap() {
-
- const box=document.getElementById("mapList");
-
- box.replaceChildren();
-
- dinos.filter(d=>d.country!=="Fictief").forEach(d=>{
-
-  const card=document.createElement("article");
-
-  card.className="map-card";
-
-  const title=document.createElement("h3");
-
-  title.textContent=d.emoji+" "+d.name;
-
-  const country=document.createElement("p");
-
-  country.textContent="🌍 Land: "+d.country;
-
-  const era=document.createElement("p");
-
-  era.textContent="🕰️ Periode: "+d.era;
-
-  const info=document.createElement("p");
-
-  info.textContent=d.info;
-
-  card.append(title,country,era,info);
-
-  box.appendChild(card);
-
- });
+  })
 
 }
 
-save();
+function updateSiteText(){
 
-renderQuestion();
+  const it=siteItems[siteSelected];if(!it)return;
 
-renderMap();
+  it.text=$('siteText').value;it.action=$('siteAction').value;renderSite()
+
+}
+
+function exportSite(){
+
+  const html='<!doctype html><html lang="nl"><meta charset="utf-8"><title>Mijn site</title><body style="font:18px system-ui;background:#fffaf0;padding:30px">'+
+
+    siteItems.map(i=>i.type==='heading'?'<h1>'+esc(i.text)+'</h1>':i.type==='text'?'<p>'+esc(i.text)+'</p>':i.type==='button'?'<button onclick="alert(\\''+esc(i.text).replace(/'/g,"&#39;")+'\\')">'+esc(i.text)+'</button>':'<p>'+esc(i.text)+'</p>').join('')+'</body></html>';
+
+  download(html,'mijn-site.html','text/html')
+
+}
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+// Verhalen
+
+function previewStory(){
+
+  const root=$('storyPreview');root.replaceChildren();
+
+  const h=document.createElement('h2');h.textContent=$('storyTitle').value||'Mijn verhaal';root.append(h);
+
+  const p=document.createElement('p');p.style.whiteSpace='pre-wrap';p.textContent=$('storyText').value;root.append(p);
+
+  const f=$('storyImage').files[0];
+
+  if(f){
+
+    if(storyImageUrl)URL.revokeObjectURL(storyImageUrl);
+
+    storyImageUrl=URL.createObjectURL(f);
+
+    const img=document.createElement('img');img.src=storyImageUrl;
+
+    img.style.cssText='max-width:100%;border-radius:15px';
+
+    if($('storyMotion').value==='float')img.className='wash';
+
+    if($('storyMotion').value==='fade')img.style.animation='wash 5s infinite alternate';
+
+    root.append(img)
+
+  }
+
+}
+
+function downloadStory(){
+
+  const content='<!doctype html><html lang="nl"><meta charset="utf-8"><title>'+
+
+  esc($('storyTitle').value)+'</title><body style="font:18px system-ui;max-width:750px;margin:40px auto;line-height:1.8"><h1>'+
+
+  esc($('storyTitle').value)+'</h1><p style="white-space:pre-wrap">'+esc($('storyText').value)+'</p></body></html>';
+
+  download(content,'mijn-verhaal.html','text/html')
+
+}
+
+// Online voorbeeldprojecten
+
+const projects=[
+
+  {type:'Game',emoji:'⭐',name:'Sterrenavontuur',desc:'Een vrolijk platformlevel.'},
+
+  {type:'Game',emoji:'🟣',name:'Vormenwereld',desc:'Spring langs gekleurde vormen.'},
+
+  {type:'Site',emoji:'🌷',name:'Mijn creatieve tuin',desc:'Een kleurrijke voorbeeldwebsite.'},
+
+  {type:'Verhaal',emoji:'🦋',name:'De vliegende vlinder',desc:'Een kort fantasieverhaal.'}
+
+];
+
+function filterOnline(type){onlineFilter=type;renderOnline()}
+
+function renderOnline(){
+
+  const root=$('onlineCards');root.replaceChildren();
+
+  projects.filter(p=>onlineFilter==='Alle'||p.type===onlineFilter).forEach(p=>{
+
+    const b=document.createElement('button');b.className='card';
+
+    const icon=document.createElement('span');icon.className='emoji';icon.textContent=p.emoji;b.append(icon);
+
+    const title=document.createElement('b');title.textContent=p.name;b.append(title);
+
+    const desc=document.createElement('small');desc.textContent=p.desc;b.append(desc);
+
+    const tag=document.createElement('p');tag.className='pill';tag.textContent='Demo · '+p.type;b.append(tag);
+
+    root.append(b)
+
+  })
+
+}
+
+// Accountdemonstratie: geen server, geen echte registratie
+
+function accountMode(kind){
+
+  accountKind=kind;
+
+  $('loginTab').classList.toggle('active',kind==='login');
+
+  $('registerTab').classList.toggle('active',kind==='register');
+
+  $('accountSubmit').textContent=kind==='login'?'Inloggen':'Account maken';
+
+  $('password').autocomplete=kind==='login'?'current-password':'new-password';
+
+  $('accountMessage').textContent='';
+
+}
+
+$('accountForm').addEventListener('submit',e=>{
+
+  e.preventDefault();
+
+  if(accountKind==='register'){
+
+    $('accountMessage').textContent='Registratie is nog niet aangesloten op een server. Je kunt nu geen echt account aanmaken.';
+
+    return
+
+  }
+
+  $('accountMessage').textContent='Demo: inloggen is nog niet aangesloten op een server.';
+
+});
+
+function logout(){
+
+  demoUser=null;$('accountMessage').textContent='Je bent uitgelogd uit de demo.'
+
+}
 
 </script>
 
 </body>
 
 </html>
-
