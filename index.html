@@ -6,109 +6,177 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Animate and Decorate</title>
+<title>Animate & Decorate — Game Studio</title>
 
 <style>
 
 :root {
 
-  --paper:#fffaf0; --ink:#37352f; --pink:#f5b8c9;
+  --paper:#fffaf0;
 
-  --blue:#b8dff0; --green:#c9e5bb; --yellow:#f7df8b;
+  --ink:#37352f;
 
-  --purple:#d9c8f3; --line:#e9dfd0;
+  --pink:#f5b8c9;
+
+  --blue:#b8dff0;
+
+  --green:#c9e5bb;
+
+  --yellow:#f7df8b;
+
+  --purple:#d9c8f3;
+
+  --line:#e9dfd0;
 
 }
 
 *{box-sizing:border-box}
 
-body{margin:0;background:var(--paper);color:var(--ink);font:15px system-ui,sans-serif}
+body{
 
-button,input,textarea,select{font:inherit}
+  margin:0;background:var(--paper);color:var(--ink);
 
-button{cursor:pointer;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink);padding:9px 12px}
+  font:15px system-ui,sans-serif
 
-button:hover{filter:brightness(.97);transform:translateY(-1px)}
+}
 
-button.active,.primary{background:#38362f;color:white}
+button,input,select{font:inherit}
 
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4%;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fffaf0ee;backdrop-filter:blur(12px);z-index:5}
+button{
 
-.logo{font-size:19px;font-weight:900;letter-spacing:-1px}
+  border:1px solid var(--line);border-radius:12px;
+
+  padding:10px 12px;background:white;color:var(--ink);
+
+  cursor:pointer;touch-action:manipulation
+
+}
+
+button:hover{filter:brightness(.96)}
+
+button:active{transform:scale(.97)}
+
+.primary{background:#38362f;color:white}
+
+header{
+
+  padding:16px 4%;border-bottom:1px solid var(--line);
+
+  background:#fffaf0;display:flex;align-items:center;
+
+  justify-content:space-between;gap:12px;flex-wrap:wrap
+
+}
+
+.logo{font-size:20px;font-weight:900;letter-spacing:-1px}
 
 .logo span{color:#d66c91}
 
-nav{display:flex;gap:7px;flex-wrap:wrap}
+main{max-width:1250px;margin:auto;padding:20px 14px}
 
-main{max-width:1200px;margin:auto;padding:24px 18px}
+h1{font-size:clamp(27px,5vw,40px);margin:0 0 8px}
 
-h1,h2,p{margin-top:0}
+p{line-height:1.6}
 
-.hero{padding:38px 25px;border-radius:26px;background:linear-gradient(120deg,#f8d6df,#f8e8ad,#d4e9d0,#d9d0f1);position:relative;overflow:hidden}
+.muted{color:#777267}
 
-.hero h1{font-size:clamp(34px,6vw,65px);line-height:1;letter-spacing:-3px;max-width:700px}
+.panel{
 
-.hero p{max-width:540px;line-height:1.7}
+  background:white;border:1px solid var(--line);
 
-.paint{display:inline-block;color:#b64d77;transform:rotate(-2deg);text-shadow:2px 3px #fff6}
+  border-radius:17px;padding:14px;margin:12px 0
 
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0}
-
-.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:white;text-align:left;min-height:150px}
-
-.card .emoji{font-size:30px;display:block;margin-bottom:12px}
-
-.card b{display:block;margin-bottom:7px}
-
-.card small,.muted{color:#777267}
-
-.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0}
+}
 
 .toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:10px 0}
 
-.editor{display:grid;grid-template-columns:180px minmax(0,1fr);gap:12px}
+.editor{
 
-.side{display:flex;flex-direction:column;gap:8px}
+  display:grid;grid-template-columns:210px minmax(0,1fr);gap:12px
 
-.side button{text-align:left}
+}
 
-canvas{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);touch-action:pan-y}
+.sidebar{display:flex;flex-direction:column;gap:8px}
 
-.workspace{min-width:0}
+.sidebar button{text-align:left}
 
-.field{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;margin:5px 0 10px}
+.field{
 
-textarea.field{min-height:160px;resize:vertical}
+  display:block;width:100%;padding:10px;margin:5px 0 12px;
 
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  border:1px solid var(--line);border-radius:10px;background:#fffdf8
 
-.row>*{min-width:0}
+}
 
-.pill{background:#f4eee3;border-radius:20px;padding:5px 9px;font-size:12px}
+label{font-size:13px;font-weight:650}
+
+canvas{
+
+  width:100%;height:auto;display:block;border:1px solid var(--line);
+
+  border-radius:12px;background:white;touch-action:none
+
+}
+
+.pill{
+
+  display:inline-block;background:#f4eee3;border-radius:30px;
+
+  padding:5px 10px;font-size:12px
+
+}
+
+#gameControls{
+
+  display:none;gap:12px;justify-content:space-between;
+
+  align-items:center;margin-top:12px;user-select:none
+
+}
+
+#gameControls.visible{display:flex}
+
+.controlGroup{display:flex;gap:10px}
+
+.gameControl{
+
+  width:70px;height:65px;font-size:25px;
+
+  border:2px solid #e3d5c6;background:#fff7fc;
+
+  box-shadow:0 4px 0 #eadce4;touch-action:none
+
+}
+
+.gameControl.jump{background:#e7dcfa}
+
+.gameControl.pressed{transform:translateY(3px);box-shadow:none}
+
+.info{font-size:13px;color:#777267}
+
+hr{border:0;border-top:1px solid var(--line);margin:8px 0}
 
 [hidden]{display:none!important}
 
-footer{text-align:center;padding:30px;color:#8b8173}
-
-@keyframes wash{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(8px,-7px) rotate(3deg)}}
-
-.wash{animation:wash 5s ease-in-out infinite}
-
 @media(max-width:750px){
 
- header{align-items:flex-start;flex-direction:column}
+  .editor{grid-template-columns:1fr}
 
- .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 
- .editor{grid-template-columns:1fr}
+  .sidebar h3,.sidebar label,.sidebar input,.sidebar select,.sidebar hr,
 
- .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sidebar .full{grid-column:1/-1}
 
- .side button{text-align:center;padding:8px 3px;font-size:12px}
+  .sidebar button{text-align:center;padding:10px 5px;font-size:13px}
 
- main{padding:15px 10px}
+  main{padding:12px 8px}
+
+  header{padding:13px}
+
+  .gameControl{width:65px;height:60px}
 
 }
 
@@ -122,87 +190,21 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
   <div class="logo">Animate <span>& Decorate</span> ✿</div>
 
-  <nav>
-
-    <button onclick="page('home')">Home</button>
-
-    <button onclick="page('online')">Online</button>
-
-    <button onclick="page('game')">Make a Game</button>
-
-    <button onclick="page('site')">Make a Site</button>
-
-    <button onclick="page('story')">Make a Story</button>
-
-  </nav>
+  <span class="pill">🎮 Game Studio · Geen login nodig</span>
 
 </header>
 
 <main>
 
-<section id="home">
-
-  <div class="hero">
-
-    <div class="wash" style="font-size:30px">🎨 ✨ 🦋</div>
-
-    <h1>Jouw ideeën.<br><span class="paint">Jouw wereld.</span></h1>
-
-    <p>Maak games, bouw websites en schrijf verhalen.
-
-    Geef je fantasie alle ruimte, één kleurrijke creatie tegelijk.
-
-    Je hoeft niet in te loggen. Begin direct met creëren!</p>
-
-    <div class="row">
-
-      <button class="primary" onclick="page('game')">＋ Maak een game</button>
-
-      <button onclick="page('site')">Maak een website ↗</button>
-
-      <button onclick="page('story')">Schrijf een verhaal</button>
-
-    </div>
-
-  </div>
-
-  <h2 style="margin-top:28px">Wat ga je maken?</h2>
-
-  <div class="cards">
-
-    <button class="card" onclick="page('game')"><span class="emoji">🎮</span><b>Make a Game</b><small>Bouw levels, vormen en platformgames.</small></button>
-
-    <button class="card" onclick="page('site')"><span class="emoji">🖥️</span><b>Make a Site</b><small>Ontwerp pagina's en interactieve knoppen.</small></button>
-
-    <button class="card" onclick="page('story')"><span class="emoji">📖</span><b>Make a Story</b><small>Schrijf verhalen met illustraties.</small></button>
-
-    <button class="card" onclick="page('online')"><span class="emoji">🌍</span><b>Online</b><small>Ontdek voorbeeldprojecten.</small></button>
-
-  </div>
-
-  <div class="panel">
-
-    <b>🌱 Alles begint met een idee.</b>
-
-    <p class="muted" style="margin:7px 0 0">Je hoeft geen account te maken.
-
-    Experimenteer, bouw projecten en download je creaties wanneer je wilt.
-
-    Projecten online delen tussen gebruikers vereist later een server.</p>
-
-  </div>
-
-</section>
-
-<section id="game" hidden>
-
   <h1>🎮 Make a Game</h1>
 
-  <p class="muted">Voeg vormen toe, sleep ze rond en maak je eigen level.</p>
+  <p class="muted">Bouw je eigen game, voeg tekst en effecten toe en test je level.</p>
 
   <div class="toolbar">
 
-    <input class="field" id="gameName" value="Mijn eerste level" aria-label="Naam van je level" style="width:210px;margin:0">
+    <input id="levelName" class="field" value="Mijn eerste level"
+
+      aria-label="Naam van je level" style="width:220px;margin:0">
 
     <button onclick="undo()">↶ Ongedaan</button>
 
@@ -210,49 +212,83 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
     <button onclick="pasteObject()">Plak</button>
 
-    <button onclick="removeObject()">Verwijder</button>
+    <button onclick="deleteObject()">🗑 Verwijderen</button>
 
-    <button onclick="rotateObject()">↻ Draai</button>
+    <button onclick="rotateObject()">↻ Draaien</button>
 
-    <button onclick="toggleHits()" id="hitBtn">Show hitboxes</button>
-
-    <button onclick="togglePlay()" id="playBtn" class="primary">▶ Test game</button>
+    <button onclick="togglePlay()" class="primary" id="playButton">▶ Test game</button>
 
   </div>
 
   <div class="editor">
 
-    <aside class="side panel">
+    <aside class="panel sidebar">
 
-      <b>Object toevoegen</b>
+      <h3 style="margin:0">✨ Object toevoegen</h3>
 
-      <button onclick="add('rect')">▰ Cube / blok</button>
+      <button onclick="addObject('rect')">▰ Blok</button>
 
-      <button onclick="add('circle')">● Rondje</button>
+      <button onclick="addObject('circle')">● Cirkel</button>
 
-      <button onclick="add('triangle')">▲ Driehoek</button>
+      <button onclick="addObject('triangle')">▲ Driehoek</button>
 
-      <button onclick="add('star')">★ Ster</button>
+      <button onclick="addObject('star')">★ Ster</button>
 
-      <button onclick="add('diamond')">◆ Diamant</button>
+      <button onclick="addObject('diamond')">◆ Diamant</button>
 
-      <button onclick="add('platform')">▬ Platform</button>
+      <button onclick="addObject('platform')">▬ Platform</button>
 
-      <button onclick="add('decor')">✿ Decoratie (geen hitbox)</button>
+      <button onclick="addObject('decor')">✿ Decoratie</button>
 
-      <button onclick="add('hitbox')">▧ Losse hitbox</button>
+      <button onclick="addObject('text')">T Tekst toevoegen</button>
 
-      <hr style="border:0;border-top:1px solid var(--line);width:100%">
+      <hr>
 
-      <b>Instellingen</b>
+      <h3 style="margin:0">🎨 Instellingen</h3>
 
-      <label>Kleur</label>
+      <label for="objText">Tekst van object</label>
 
-      <input type="color" id="objColor" value="#f5b8c9" class="field" onchange="changeColor()">
+      <input id="objText" class="field" value=""
 
-      <label>Hitbox</label>
+        placeholder="Typ hier je tekst" oninput="editText()">
 
-      <select id="objHit" class="field" onchange="changeHit()">
+      <label for="objColor">Kleur</label>
+
+      <input id="objColor" class="field" type="color" value="#f5b8c9"
+
+        oninput="editColor()">
+
+      <label for="objSize">Grootte</label>
+
+      <input id="objSize" class="field" type="range"
+
+        min="15" max="180" value="55" oninput="editSize()">
+
+      <label for="fontSize">Tekstgrootte</label>
+
+      <input id="fontSize" class="field" type="range"
+
+        min="12" max="64" value="28" oninput="editFontSize()">
+
+      <label for="objGlow">Glow / gloed</label>
+
+      <select id="objGlow" class="field" onchange="editGlow()">
+
+        <option value="0">Geen glow</option>
+
+        <option value="8">Zachte glow</option>
+
+        <option value="18">Normale glow</option>
+
+        <option value="32">Sterke glow</option>
+
+        <option value="50">Super glow</option>
+
+      </select>
+
+      <label for="objHit">Botsing / hitbox</label>
+
+      <select id="objHit" class="field" onchange="editHitbox()">
 
         <option value="yes">Aan</option>
 
@@ -260,23 +296,35 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
       </select>
 
-      <label>Grootte</label>
-
-      <input type="range" min="15" max="130" value="55" id="objSize" class="field" oninput="resizeObject()">
-
-      <button onclick="animateObject()">↝ Animeer object</button>
+      <button onclick="animateSelected()">↝ Animeer object</button>
 
       <button onclick="stopAnimation()">■ Stop animatie</button>
 
-      <button onclick="exportLevel()">⇩ Download level JSON</button>
+      <button onclick="toggleHitboxes()" id="hitButton">▧ Toon hitboxes</button>
+
+      <hr>
+
+      <h3 style="margin:0">💾 Bewaren</h3>
+
+      <button onclick="saveJSON()">⇩ Download game JSON</button>
+
+      <button onclick="saveHTML()">🌐 Download speelbare game</button>
+
+      <button onclick="document.getElementById('loadFile').click()">📂 Open level JSON</button>
+
+      <input id="loadFile" type="file" accept=".json,application/json"
+
+        hidden onchange="loadJSON(event)">
+
+      <button onclick="resetLevel()">↺ Nieuw level</button>
 
     </aside>
 
-    <div class="workspace">
+    <div>
 
       <div class="panel">
 
-        <canvas id="gameCanvas" width="800" height="440"></canvas>
+        <canvas id="gameCanvas" width="900" height="500"></canvas>
 
         <div class="toolbar">
 
@@ -284,13 +332,37 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
           <span class="pill" id="objectCount">0 objecten</span>
 
-          <span class="pill">← → bewegen · spatie springen</span>
+          <span class="pill" id="selectedLabel">Niets geselecteerd</span>
 
         </div>
 
-        <p class="muted">Klik op een object om het te selecteren.
+        <div id="gameControls" aria-label="Gamebesturing">
 
-        Sleep het om te verplaatsen. Klik op de achtergrond om een selectie te wissen.</p>
+          <div class="controlGroup">
+
+            <button class="gameControl" data-control="left"
+
+              aria-label="Beweeg naar links">◀</button>
+
+            <button class="gameControl" data-control="right"
+
+              aria-label="Beweeg naar rechts">▶</button>
+
+          </div>
+
+          <button class="gameControl jump" data-control="jump"
+
+            aria-label="Spring">⬆</button>
+
+        </div>
+
+        <p class="info" id="helpText">
+
+          Klik op een object om het te selecteren. Sleep om het te verplaatsen.
+
+          Voeg tekst toe en geef objecten een glow.
+
+        </p>
 
       </div>
 
@@ -298,7 +370,9 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
         <b>Geselecteerd object</b>
 
-        <div id="selectedInfo" class="muted">Selecteer een object op het canvas.</div>
+        <p id="selectedInfo" class="muted">Selecteer een object om het aan te passen.</p>
+
+        <p class="info">Tip: je kunt objecten ook selecteren en verplaatsen op een touchscreen.</p>
 
       </div>
 
@@ -306,267 +380,161 @@ footer{text-align:center;padding:30px;color:#8b8173}
 
   </div>
 
-</section>
-
-<section id="site" hidden>
-
-  <h1>🖥️ Make a Site</h1>
-
-  <p class="muted">Bouw een eenvoudige website met tekst, afbeeldingen en knoppen.</p>
-
-  <div class="editor">
-
-    <div class="panel">
-
-      <b>Onderdelen</b>
-
-      <button onclick="addSite('heading')">＋ Koptekst</button>
-
-      <button onclick="addSite('text')">＋ Tekst</button>
-
-      <button onclick="addSite('button')">＋ Knop</button>
-
-      <button onclick="addSite('image')">＋ Afbeelding</button>
-
-      <button onclick="addSite('paint')">＋ Verfvlek</button>
-
-      <button onclick="exportSite()">Download HTML</button>
-
-      <p class="muted" style="margin-top:15px">Selecteer een onderdeel om het aan te passen.</p>
-
-      <label>Tekst of knoplabel</label>
-
-      <input class="field" id="siteText" placeholder="Mijn tekst" oninput="updateSiteText()">
-
-      <label>Knopactie</label>
-
-      <select class="field" id="siteAction" onchange="updateSiteText()">
-
-        <option value="alert">Toon een bericht</option>
-
-        <option value="next">Ga naar volgende onderdeel</option>
-
-      </select>
-
-    </div>
-
-    <div class="panel" id="sitePreview">
-
-      <div id="siteItems"></div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section id="story" hidden>
-
-  <h1>📖 Make a Story</h1>
-
-  <p class="muted">Schrijf je eigen verhaal en voeg een illustratie toe.</p>
-
-  <div class="panel">
-
-    <label>Titel</label>
-
-    <input class="field" id="storyTitle" placeholder="De magische verftuin">
-
-    <label>Jouw verhaal</label>
-
-    <textarea class="field" id="storyText" placeholder="Er was eens een wereld waarin verf tot leven kwam..."></textarea>
-
-    <label>Illustratie toevoegen</label>
-
-    <input type="file" id="storyImage" accept="image/*" class="field">
-
-    <label>Beweging</label>
-
-    <select id="storyMotion" class="field">
-
-      <option value="none">Geen animatie</option>
-
-      <option value="float">Zweven</option>
-
-      <option value="fade">Vervagen</option>
-
-    </select>
-
-    <button class="primary" onclick="previewStory()">Bekijk verhaal</button>
-
-    <button onclick="downloadStory()">Download verhaal</button>
-
-  </div>
-
-  <div class="panel" id="storyPreview">
-
-    <h2>Jouw verhaal verschijnt hier</h2>
-
-  </div>
-
-</section>
-
-<section id="online" hidden>
-
-  <h1>🌍 Online ontdekken</h1>
-
-  <p>Bekijk voorbeelden van games, websites en verhalen.
-
-  Dit zijn demonstratieprojecten, geen echte uploads van gebruikers.</p>
-
-  <div class="toolbar">
-
-    <button onclick="filterOnline('Alle')">Alles</button>
-
-    <button onclick="filterOnline('Game')">Games</button>
-
-    <button onclick="filterOnline('Site')">Websites</button>
-
-    <button onclick="filterOnline('Verhaal')">Verhalen</button>
-
-  </div>
-
-  <div id="onlineCards" class="cards"></div>
-
-  <div class="panel">
-
-    <b>✨ Creëer zonder account</b>
-
-    <p class="muted">Je hoeft niet in te loggen om Animate and Decorate te gebruiken.
-
-    Maak je eigen projecten en download ze naar je apparaat.</p>
-
-    <button class="primary" onclick="page('game')">🎮 Begin met maken</button>
-
-  </div>
-
-</section>
-
 </main>
-
-<footer>Animate and Decorate ✿ — Make something wonderful.</footer>
 
 <script>
 
+"use strict";
+
 const $ = id => document.getElementById(id);
 
-let currentPage='home', objects=[], selected=null, clipboard=null;
+const canvas = $("gameCanvas");
 
-let showHits=false, playing=false, animating=false, frame=0;
+const ctx = canvas.getContext("2d");
 
-let historyStack=[], keys={}, player={x:55,y:330,vx:0,vy:0,onGround:false};
+const COLORS = [
 
-let siteItems=[], siteSelected=null, storyImageUrl=null, onlineFilter='Alle';
+  "#f5b8c9", "#b8dff0", "#c9e5bb",
 
-const canvas=$('gameCanvas'), ctx=canvas.getContext('2d');
+  "#f7df8b", "#d9c8f3", "#efb28e"
 
-const colors=['#f5b8c9','#b8dff0','#c9e5bb','#f7df8b','#d9c8f3','#efb28e'];
+];
 
-function page(name){
+let objects = [];
 
-  currentPage=name;
+let selected = null;
 
-  ['home','game','site','story','online'].forEach(id=>$(id).hidden=id!==name);
+let clipboard = null;
 
-  if(name==='game')draw();
+let history = [];
 
-  if(name==='online')renderOnline();
+let playing = false;
 
-  if(name==='site')renderSite();
+let showHits = false;
+
+let frame = 0;
+
+let drag = null;
+
+let animationId = null;
+
+let keys = {left:false,right:false,jump:false};
+
+let player = {};
+
+let gameWon = false;
+
+let lastTime = 0;
+
+function uid(){
+
+  return "obj_" + Math.random().toString(36).slice(2) +
+
+    Date.now().toString(36);
+
+}
+
+function defaultObject(type,x=300,y=200){
+
+  return {
+
+    id:uid(),type,x,y,
+
+    w:type==="platform"?160:60,
+
+    h:type==="platform"?20:60,
+
+    color:COLORS[objects.length%COLORS.length],
+
+    rotation:0,
+
+    glow:0,
+
+    hitbox:!["decor","text"].includes(type),
+
+    text:type==="text"?"Mijn tekst":"",
+
+    fontSize:28,
+
+    animating:false,
+
+    baseX:x,baseY:y,
+
+    phase:Math.random()*Math.PI*2
+
+  };
 
 }
 
 function snapshot(){
 
-  historyStack.push(JSON.stringify(objects));
+  history.push(JSON.stringify(objects));
 
-  if(historyStack.length>40)historyStack.shift();
+  if(history.length>60)history.shift();
 
 }
 
 function undo(){
 
-  if(!historyStack.length)return;
+  if(playing||!history.length)return;
 
-  objects=JSON.parse(historyStack.pop());
+  objects=JSON.parse(history.pop());
 
-  selected=objects[objects.length-1]?.id??null;
+  if(!objects.some(o=>o.id===selected))selected=null;
 
   draw();
 
 }
 
-function add(type){
+function addObject(type){
+
+  if(playing)return;
 
   snapshot();
 
-  const o={
+  const o=defaultObject(type,
 
-    id:crypto.randomUUID(),type,x:300+Math.random()*120,
+    230+Math.random()*250,100+Math.random()*180);
 
-    y:150+Math.random()*90,w:type==='platform'?150:55,
+  objects.push(o);
 
-    h:type==='platform'?18:55,rotation:0,
+  selected=o.id;
 
-    color:colors[objects.length%colors.length],
+  syncSettings();
 
-    hitbox:!['decor'].includes(type),decor:type==='decor',vx:0,vy:0
-
-  };
-
-  if(type==='hitbox')o.hitbox=true;
-
-  objects.push(o);selected=o.id;syncSettings();draw();
+  draw();
 
 }
 
-function getSelected(){return objects.find(o=>o.id===selected)}
+function getSelected(){
 
-function syncSettings(){
-
-  const o=getSelected();
-
-  if(!o){$('selectedInfo').textContent='Selecteer een object.';return}
-
-  $('objColor').value=o.color;
-
-  $('objHit').value=o.hitbox?'yes':'no';
-
-  $('objSize').value=o.w;
-
-  $('selectedInfo').textContent=`${o.type} · x ${Math.round(o.x)} · y ${Math.round(o.y)} · ${o.hitbox?'hitbox aan':'geen hitbox'}`;
+  return objects.find(o=>o.id===selected);
 
 }
 
-function changeColor(){
+function selectObject(id){
 
-  const o=getSelected();
+  selected=id;
 
-  if(o){snapshot();o.color=$('objColor').value;draw()}
+  syncSettings();
 
-}
-
-function changeHit(){
-
-  const o=getSelected();
-
-  if(o){snapshot();o.hitbox=$('objHit').value==='yes';draw()}
+  draw();
 
 }
 
-function resizeObject(){
+function deleteObject(){
 
-  const o=getSelected();
+  if(playing||!selected)return;
 
-  if(o){o.w=+$('objSize').value;o.h=o.type==='platform'?18:o.w;draw()}
+  snapshot();
 
-}
+  objects=objects.filter(o=>o.id!==selected);
 
-function rotateObject(){
+  selected=null;
 
-  const o=getSelected();
+  syncSettings();
 
-  if(o){snapshot();o.rotation=(o.rotation+15)%360;draw()}
+  draw();
 
 }
 
@@ -574,69 +542,203 @@ function copyObject(){
 
   const o=getSelected();
 
-  if(o)clipboard=JSON.parse(JSON.stringify(o));
+  if(o&&!playing)clipboard=JSON.parse(JSON.stringify(o));
 
 }
 
 function pasteObject(){
 
-  if(!clipboard)return;
+  if(!clipboard||playing)return;
 
   snapshot();
 
-  const o={...clipboard,id:crypto.randomUUID(),x:clipboard.x+25,y:clipboard.y+25};
+  const o=JSON.parse(JSON.stringify(clipboard));
 
-  objects.push(o);selected=o.id;draw();
+  o.id=uid();
 
-}
+  o.x+=25;o.y+=25;
 
-function removeObject(){
+  o.baseX=o.x;o.baseY=o.y;
 
-  if(!selected)return;
+  objects.push(o);
 
-  snapshot();
+  selected=o.id;
 
-  objects=objects.filter(o=>o.id!==selected);
-
-  selected=null;draw();syncSettings();
-
-}
-
-function toggleHits(){
-
-  showHits=!showHits;
-
-  $('hitBtn').classList.toggle('active',showHits);
+  syncSettings();
 
   draw();
 
 }
 
-function animateObject(){animating=true}
+function rotateObject(){
 
-function stopAnimation(){animating=false;draw()}
+  const o=getSelected();
 
-function exportLevel(){
+  if(!o||playing)return;
 
-  const data={name:$('gameName').value,objects};
+  snapshot();
 
-  download(JSON.stringify(data,null,2),'level.json','application/json');
+  o.rotation=(o.rotation+15)%360;
 
-}
-
-function download(content,name,type){
-
-  const blob=new Blob([content],{type});
-
-  const url=URL.createObjectURL(blob),a=document.createElement('a');
-
-  a.href=url;a.download=name;a.click();
-
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  draw();
 
 }
 
-function shape(o){
+function editColor(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.color=$("objColor").value;
+
+  draw();
+
+}
+
+function editText(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.text=$("objText").value;
+
+  draw();
+
+}
+
+function editSize(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.w=Number($("objSize").value);
+
+  if(o.type==="platform")o.h=20;
+
+  else if(o.type!=="text")o.h=o.w;
+
+  draw();
+
+}
+
+function editFontSize(){
+
+  const o=getSelected();
+
+  if(!o||playing||o.type!=="text")return;
+
+  o.fontSize=Number($("fontSize").value);
+
+  draw();
+
+}
+
+function editGlow(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.glow=Number($("objGlow").value);
+
+  draw();
+
+}
+
+function editHitbox(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.hitbox=$("objHit").value==="yes";
+
+  draw();
+
+}
+
+function syncSettings(){
+
+  const o=getSelected();
+
+  const inputs=["objText","objColor","objSize","fontSize","objGlow","objHit"];
+
+  inputs.forEach(id=>$(id).disabled=playing||!o);
+
+  if(!o){
+
+    $("selectedInfo").textContent="Selecteer een object om het aan te passen.";
+
+    $("selectedLabel").textContent="Niets geselecteerd";
+
+    return;
+
+  }
+
+  $("objText").value=o.text||"";
+
+  $("objColor").value=o.color;
+
+  $("objSize").value=o.w;
+
+  $("fontSize").value=o.fontSize||28;
+
+  $("objGlow").value=String(o.glow||0);
+
+  $("objHit").value=o.hitbox?"yes":"no";
+
+  $("selectedInfo").textContent=
+
+    o.type+" · positie "+Math.round(o.x)+", "+Math.round(o.y)+
+
+    " · glow "+(o.glow||0)+" · "+(o.hitbox?"hitbox aan":"geen hitbox");
+
+  $("selectedLabel").textContent="Geselecteerd: "+o.type;
+
+}
+
+function toggleHitboxes(){
+
+  showHits=!showHits;
+
+  $("hitButton").classList.toggle("primary",showHits);
+
+  draw();
+
+}
+
+function animateSelected(){
+
+  const o=getSelected();
+
+  if(!o||playing)return;
+
+  o.animating=true;
+
+  o.baseX=o.x;o.baseY=o.y;
+
+}
+
+function stopAnimation(){
+
+  objects.forEach(o=>{
+
+    o.animating=false;
+
+    o.x=o.baseX;
+
+    o.y=o.baseY;
+
+  });
+
+  draw();
+
+}
+
+function drawShape(o){
 
   ctx.save();
 
@@ -644,41 +746,67 @@ function shape(o){
 
   ctx.rotate(o.rotation*Math.PI/180);
 
-  ctx.fillStyle=o.color;ctx.strokeStyle='#574d48';ctx.lineWidth=2;
+  if(o.glow>0){
+
+    ctx.shadowColor=o.color;
+
+    ctx.shadowBlur=o.glow;
+
+  }
+
+  ctx.fillStyle=o.color;
+
+  ctx.strokeStyle="#574d48";
+
+  ctx.lineWidth=2;
 
   ctx.beginPath();
 
-  if(o.type==='circle'){
+  if(o.type==="circle"){
 
     ctx.ellipse(0,0,o.w/2,o.h/2,0,0,Math.PI*2);
 
-  }else if(o.type==='triangle'){
+  }else if(o.type==="triangle"){
 
-    ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,o.h/2);
+    ctx.moveTo(0,-o.h/2);
 
-    ctx.lineTo(-o.w/2,o.h/2);ctx.closePath();
+    ctx.lineTo(o.w/2,o.h/2);
 
-  }else if(o.type==='star'){
+    ctx.lineTo(-o.w/2,o.h/2);
+
+    ctx.closePath();
+
+  }else if(o.type==="star"){
 
     for(let i=0;i<10;i++){
 
-      const r=i%2?o.w*.22:o.w*.48,a=-Math.PI/2+i*Math.PI/5;
+      const r=i%2?o.w*.23:o.w*.48;
+
+      const a=-Math.PI/2+i*Math.PI/5;
 
       const x=Math.cos(a)*r,y=Math.sin(a)*r;
 
-      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+      if(i===0)ctx.moveTo(x,y);
+
+      else ctx.lineTo(x,y);
 
     }
 
     ctx.closePath();
 
-  }else if(o.type==='diamond'){
+  }else if(o.type==="diamond"){
 
-    ctx.moveTo(0,-o.h/2);ctx.lineTo(o.w/2,0);
+    ctx.moveTo(0,-o.h/2);
 
-    ctx.lineTo(0,o.h/2);ctx.lineTo(-o.w/2,0);ctx.closePath();
+    ctx.lineTo(o.w/2,0);
 
-  }else if(o.type==='decor'){
+    ctx.lineTo(0,o.h/2);
+
+    ctx.lineTo(-o.w/2,0);
+
+    ctx.closePath();
+
+  }else if(o.type==="decor"){
 
     ctx.arc(0,0,o.w/2,0,Math.PI*2);
 
@@ -690,561 +818,859 @@ function shape(o){
 
   ctx.fill();
 
-  if(o.type!=='decor')ctx.stroke();
+  if(o.type!=="decor")ctx.stroke();
 
-  if(o.type==='decor'){
+  if(o.type==="decor"){
 
-    ctx.strokeStyle='#bd6d8b';ctx.lineWidth=4;
+    ctx.strokeStyle="#bd6d8b";
 
-    ctx.beginPath();ctx.arc(0,0,o.w*.24,0,Math.PI*1.7);ctx.stroke();
+    ctx.lineWidth=4;
+
+    for(let i=0;i<5;i++){
+
+      ctx.beginPath();
+
+      ctx.ellipse(
+
+        Math.cos(i*Math.PI*2/5)*o.w*.17,
+
+        Math.sin(i*Math.PI*2/5)*o.h*.17,
+
+        o.w*.17,o.h*.25,i*Math.PI/2,0,Math.PI*2
+
+      );
+
+      ctx.stroke();
+
+    }
 
   }
 
   ctx.restore();
 
+  if(o.type==="text"){
+
+    ctx.save();
+
+    ctx.fillStyle=o.color;
+
+    ctx.font="bold "+o.fontSize+"px system-ui,sans-serif";
+
+    ctx.textAlign="left";
+
+    ctx.textBaseline="top";
+
+    if(o.glow>0){
+
+      ctx.shadowColor=o.color;
+
+      ctx.shadowBlur=o.glow;
+
+    }
+
+    ctx.translate(o.x,o.y);
+
+    ctx.rotate(o.rotation*Math.PI/180);
+
+    ctx.fillText(o.text||"Mijn tekst",0,0);
+
+    ctx.restore();
+
+  }
+
 }
 
-function draw(){
+function drawGrid(){
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#fffdf7";
 
-  ctx.fillStyle='#fffdf7';ctx.fillRect(0,0,800,440);
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  ctx.strokeStyle='#f0e8dc';ctx.lineWidth=1;
+  ctx.strokeStyle="#f0e8dc";
 
-  for(let x=0;x<800;x+=25){
+  ctx.lineWidth=1;
 
-    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,440);ctx.stroke();
+  for(let x=0;x<canvas.width;x+=25){
 
-  }
+    ctx.beginPath();ctx.moveTo(x,0);
 
-  for(let y=0;y<440;y+=25){
-
-    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(800,y);ctx.stroke();
+    ctx.lineTo(x,canvas.height);ctx.stroke();
 
   }
 
-  objects.forEach(o=>{
+  for(let y=0;y<canvas.height;y+=25){
 
-    if(animating&&o.id===selected){
+    ctx.beginPath();ctx.moveTo(0,y);
 
-      o.x+=Math.sin(frame/20)*.7;
+    ctx.lineTo(canvas.width,y);ctx.stroke();
 
-      o.y+=Math.cos(frame/24)*.4;
-
-    }
-
-    shape(o);
-
-    if(showHits&&o.hitbox){
-
-      ctx.strokeStyle='#e34c55';ctx.lineWidth=2;
-
-      ctx.setLineDash([5,4]);ctx.strokeRect(o.x,o.y,o.w,o.h);
-
-      ctx.setLineDash([]);
-
-    }
-
-    if(o.id===selected){
-
-      ctx.strokeStyle='#39352e';ctx.lineWidth=2;
-
-      ctx.setLineDash([4,3]);ctx.strokeRect(o.x-4,o.y-4,o.w+8,o.h+8);
-
-      ctx.setLineDash([]);
-
-    }
-
-  });
-
-  if(playing)drawPlayer();
-
-  $('objectCount').textContent=objects.length+' objecten';
-
-  syncSettings();
+  }
 
 }
 
 function drawPlayer(){
 
-  ctx.fillStyle='#7b68b5';ctx.fillRect(player.x,player.y,25,36);
+  ctx.save();
 
-  ctx.fillStyle='white';
+  ctx.shadowColor="#b8a1fa";
 
-  ctx.fillRect(player.x+5,player.y+7,5,5);
+  ctx.shadowBlur=12;
 
-  ctx.fillRect(player.x+15,player.y+7,5,5);
+  ctx.fillStyle="#8871c5";
+
+  ctx.fillRect(player.x,player.y,28,38);
+
+  ctx.restore();
+
+  ctx.fillStyle="white";
+
+  ctx.fillRect(player.x+5,player.y+8,6,6);
+
+  ctx.fillRect(player.x+17,player.y+8,6,6);
 
 }
 
-function intersects(o,x,y){
+function draw(){
 
-  return x>=o.x-5&&x<=o.x+o.w+5&&y>=o.y-5&&y<=o.y+o.h+5;
+  drawGrid();
+
+  objects.forEach(o=>{
+
+    drawShape(o);
+
+    if(showHits&&o.hitbox){
+
+      ctx.save();
+
+      ctx.strokeStyle="#e34c55";
+
+      ctx.lineWidth=2;
+
+      ctx.setLineDash([5,4]);
+
+      ctx.strokeRect(o.x,o.y,o.w,o.h);
+
+      ctx.restore();
+
+    }
+
+    if(!playing&&o.id===selected){
+
+      ctx.save();
+
+      ctx.strokeStyle="#39352e";
+
+      ctx.lineWidth=2;
+
+      ctx.setLineDash([4,3]);
+
+      ctx.strokeRect(o.x-5,o.y-5,o.w+10,o.h+10);
+
+      ctx.restore();
+
+    }
+
+  });
+
+  if(playing){
+
+    drawPlayer();
+
+    if(gameWon){
+
+      ctx.save();
+
+      ctx.fillStyle="#37352f";
+
+      ctx.font="bold 35px system-ui";
+
+      ctx.textAlign="center";
+
+      ctx.shadowColor="#f7df8b";
+
+      ctx.shadowBlur=15;
+
+      ctx.fillText("LEVEL VOLTOOID! ✨",450,90);
+
+      ctx.restore();
+
+    }
+
+  }
+
+  $("objectCount").textContent=objects.length+" objecten";
+
+  syncSettings();
 
 }
 
-let drag=null;
-
-canvas.addEventListener('pointerdown',e=>{
-
-  if(playing)return;
+function canvasPosition(e){
 
   const r=canvas.getBoundingClientRect();
 
-  const x=(e.clientX-r.left)*canvas.width/r.width;
+  return {
 
-  const y=(e.clientY-r.top)*canvas.height/r.height;
+    x:(e.clientX-r.left)*canvas.width/r.width,
 
-  const o=[...objects].reverse().find(o=>intersects(o,x,y));
+    y:(e.clientY-r.top)*canvas.height/r.height
+
+  };
+
+}
+
+function hitTest(o,x,y){
+
+  if(o.type==="text"){
+
+    ctx.save();
+
+    ctx.font="bold "+o.fontSize+"px system-ui";
+
+    const width=ctx.measureText(o.text||"Mijn tekst").width;
+
+    ctx.restore();
+
+    return x>=o.x-6&&x<=o.x+width+6&&
+
+      y>=o.y-6&&y<=o.y+o.fontSize+6;
+
+  }
+
+  return x>=o.x-6&&x<=o.x+o.w+6&&
+
+    y>=o.y-6&&y<=o.y+o.h+6;
+
+}
+
+canvas.addEventListener("pointerdown",e=>{
+
+  if(playing)return;
+
+  const p=canvasPosition(e);
+
+  const o=[...objects].reverse().find(o=>hitTest(o,p.x,p.y));
 
   if(o){
 
-    selected=o.id;snapshot();drag={x,y,ox:o.x,oy:o.y};
+    selected=o.id;
+
+    snapshot();
+
+    drag={x:p.x,y:p.y,ox:o.x,oy:o.y};
 
     canvas.setPointerCapture(e.pointerId);
 
-  }else selected=null;
+  }else{
+
+    selected=null;
+
+    drag=null;
+
+  }
 
   draw();
 
 });
 
-canvas.addEventListener('pointermove',e=>{
+canvas.addEventListener("pointermove",e=>{
 
-  if(!drag)return;
+  if(!drag||playing)return;
 
-  const r=canvas.getBoundingClientRect();
-
-  const x=(e.clientX-r.left)*canvas.width/r.width;
-
-  const y=(e.clientY-r.top)*canvas.height/r.height;
+  const p=canvasPosition(e);
 
   const o=getSelected();
 
-  if(o){o.x=drag.ox+x-drag.x;o.y=drag.oy+y-drag.y;draw()}
+  if(!o)return;
+
+  o.x=drag.ox+p.x-drag.x;
+
+  o.y=drag.oy+p.y-drag.y;
+
+  o.baseX=o.x;o.baseY=o.y;
+
+  draw();
 
 });
 
-canvas.addEventListener('pointerup',()=>drag=null);
+function stopDrag(){drag=null}
 
-canvas.addEventListener('pointercancel',()=>drag=null);
+canvas.addEventListener("pointerup",stopDrag);
+
+canvas.addEventListener("pointercancel",stopDrag);
 
 function togglePlay(){
 
   playing=!playing;
 
-  $('playBtn').textContent=playing?'■ Stop testen':'▶ Test game';
+  drag=null;
 
-  $('modeLabel').textContent=playing?'Speelmodus':'Bewerkmodus';
+  $("playButton").textContent=playing?"■ Stop testen":"▶ Test game";
 
-  if(playing)player={x:35,y:320,vx:0,vy:0,onGround:false};
+  $("modeLabel").textContent=playing?"Speelmodus":"Bewerkmodus";
+
+  $("gameControls").classList.toggle("visible",playing);
+
+  $("helpText").textContent=playing
+
+    ?"Gebruik de knoppen links, rechts en springen. Je kunt ook de pijltjestoetsen gebruiken."
+
+    :"Klik op een object om het te selecteren. Sleep om het te verplaatsen.";
+
+  if(playing){
+
+    player={x:35,y:400,vx:0,vy:0,onGround:false};
+
+    gameWon=false;
+
+    keys={left:false,right:false,jump:false};
+
+    lastTime=0;
+
+  }else{
+
+    keys={left:false,right:false,jump:false};
+
+    document.querySelectorAll(".gameControl").forEach(b=>b.classList.remove("pressed"));
+
+  }
 
   draw();
 
 }
 
-window.addEventListener('keydown',e=>{
+function updateGame(dt){
 
-  if(['ArrowLeft','ArrowRight',' '].includes(e.key)&&playing)e.preventDefault();
+  const step=Math.min(dt/16.67,2);
 
-  keys[e.key.toLowerCase()]=true;
+  player.vx=keys.left?-4:keys.right?4:0;
 
-  if(e.key==='Delete'&&currentPage==='game'&&!playing)removeObject();
+  player.x+=player.vx*step;
 
-  if(e.key==='Escape'&&playing)togglePlay();
+  player.vy+=.48*step;
 
-});
+  player.y+=player.vy*step;
 
-window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+  player.onGround=false;
 
-function loop(){
+  objects.forEach(o=>{
 
-  frame++;
+    if(!o.hitbox||o.type==="decor"||o.type==="text")return;
 
-  if(playing){
+    const overlaps=player.x+28>o.x&&player.x<o.x+o.w;
 
-    player.vx=keys.arrowleft||keys.a?-4:keys.arrowright||keys.d?4:0;
+    const previousBottom=player.y+38-player.vy*step;
 
-    if((keys[' ']||keys.arrowup||keys.w)&&player.onGround){
+    const currentBottom=player.y+38;
 
-      player.vy=-10;player.onGround=false;
+    if(overlaps&&player.vy>=0&&
+
+      previousBottom<=o.y+8&&currentBottom>=o.y&&
+
+      player.y<o.y){
+
+      player.y=o.y-38;
+
+      player.vy=0;
+
+      player.onGround=true;
 
     }
 
-    player.vy+=.45;player.x+=player.vx;player.y+=player.vy;
+  });
 
-    player.onGround=false;
+  if(player.y+38>=canvas.height){
 
-    objects.filter(o=>o.hitbox&&o.type!=='decor').forEach(o=>{
+    player.y=canvas.height-38;
 
-      if(player.x+25>o.x&&player.x<o.x+o.w&&
+    player.vy=0;
 
-        player.y+36>=o.y&&
+    player.onGround=true;
 
-        player.y+36<=o.y+o.h+Math.max(5,player.vy)&&player.vy>=0){
+  }
 
-        player.y=o.y-36;player.vy=0;player.onGround=true;
+  player.x=Math.max(0,Math.min(canvas.width-28,player.x));
+
+  if(player.y>canvas.height+100){
+
+    player.x=35;player.y=400;player.vy=0;
+
+  }
+
+  if(player.x>canvas.width-65)gameWon=true;
+
+}
+
+function loop(timestamp){
+
+  if(!playing&&objects.some(o=>o.animating)){
+
+    frame++;
+
+    objects.forEach(o=>{
+
+      if(o.animating){
+
+        o.x=o.baseX+Math.sin(frame/25+o.phase)*25;
+
+        o.y=o.baseY+Math.cos(frame/30+o.phase)*12;
 
       }
 
     });
 
-    if(player.y>440){player.y=390;player.vy=0}
+    draw();
 
-    player.x=Math.max(0,Math.min(775,player.x));
+  }
+
+  if(playing){
+
+    const dt=lastTime?timestamp-lastTime:16.67;
+
+    lastTime=timestamp;
+
+    if(keys.jump&&player.onGround){
+
+      player.vy=-11;
+
+      player.onGround=false;
+
+      keys.jump=false;
+
+    }
+
+    updateGame(dt);
 
     draw();
 
-  }else if(animating)draw();
+  }
 
-  requestAnimationFrame(loop);
-
-}
-
-// Standaard level
-
-const initialPlatform={
-
-  id:crypto.randomUUID(),type:'platform',x:100,y:385,w:600,h:20,
-
-  rotation:0,color:'#f5b8c9',hitbox:true,decor:false,vx:0,vy:0
-
-};
-
-const initialStar={
-
-  id:crypto.randomUUID(),type:'star',x:320,y:260,w:55,h:55,
-
-  rotation:0,color:'#b8dff0',hitbox:true,decor:false,vx:0,vy:0
-
-};
-
-const initialCircle={
-
-  id:crypto.randomUUID(),type:'circle',x:490,y:300,w:55,h:55,
-
-  rotation:0,color:'#c9e5bb',hitbox:true,decor:false,vx:0,vy:0
-
-};
-
-objects=[initialPlatform,initialStar,initialCircle];
-
-selected=initialStar.id;
-
-draw();
-
-loop();
-
-// Websitebouwer
-
-function addSite(type){
-
-  const item={
-
-    type,
-
-    text:({
-
-      heading:'Mijn creatieve wereld',
-
-      text:'Welkom op mijn website!',
-
-      button:'Klik mij',
-
-      image:'Afbeelding toevoegen',
-
-      paint:'✿'
-
-    })[type],
-
-    action:'alert'
-
-  };
-
-  siteItems.push(item);
-
-  siteSelected=siteItems.length-1;
-
-  renderSite();
+  animationId=requestAnimationFrame(loop);
 
 }
 
-function renderSite(){
+function setControl(name,pressed,button){
 
-  const root=$('siteItems');
+  if(!playing)return;
 
-  root.replaceChildren();
+  if(button)button.classList.toggle("pressed",pressed);
 
-  siteItems.forEach((it,i)=>{
+  if(name==="jump"){
 
-    const el=document.createElement('div');
+    if(pressed)keys.jump=true;
 
-    el.style.cssText='padding:12px;margin:8px 0;border:1px dashed #ddd;border-radius:10px';
+  }else{
 
-    if(it.type==='heading'){
-
-      const h=document.createElement('h2');
-
-      h.textContent=it.text;el.append(h);
-
-    }
-
-    if(it.type==='text'){
-
-      const p=document.createElement('p');
-
-      p.textContent=it.text;el.append(p);
-
-    }
-
-    if(it.type==='paint'){
-
-      const p=document.createElement('div');
-
-      p.textContent='✿ '+it.text;
-
-      p.style.cssText='font-size:40px;color:#d66c91';
-
-      el.append(p);
-
-    }
-
-    if(it.type==='button'){
-
-      const b=document.createElement('button');
-
-      b.textContent=it.text;
-
-      b.onclick=()=>{
-
-        if(it.action==='alert')alert(it.text);
-
-        else root.children[i+1]?.scrollIntoView({behavior:'smooth'});
-
-      };
-
-      el.append(b);
-
-    }
-
-    if(it.type==='image'){
-
-      const label=document.createElement('label');
-
-      label.textContent=it.text+' ';
-
-      const input=document.createElement('input');
-
-      input.type='file';input.accept='image/*';
-
-      input.onchange=()=>{
-
-        const f=input.files[0];if(!f)return;
-
-        const img=document.createElement('img');
-
-        img.src=URL.createObjectURL(f);
-
-        img.style.cssText='max-width:100%;border-radius:12px';
-
-        el.append(img);
-
-      };
-
-      label.append(input);el.append(label);
-
-    }
-
-    el.onclick=e=>{
-
-      if(e.target===el){
-
-        siteSelected=i;
-
-        $('siteText').value=it.text;
-
-        $('siteAction').value=it.action;
-
-      }
-
-    };
-
-    root.append(el);
-
-  });
-
-}
-
-function updateSiteText(){
-
-  const it=siteItems[siteSelected];if(!it)return;
-
-  it.text=$('siteText').value;
-
-  it.action=$('siteAction').value;
-
-  renderSite();
-
-}
-
-function esc(s){
-
-  return String(s).replace(/[&<>"']/g,c=>({
-
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-
-  }[c]));
-
-}
-
-function exportSite(){
-
-  const html='<!doctype html><html lang="nl"><meta charset="utf-8"><title>Mijn site</title><body style="font:18px system-ui;background:#fffaf0;padding:30px">'+
-
-    siteItems.map(i=>
-
-      i.type==='heading'?'<h1>'+esc(i.text)+'</h1>':
-
-      i.type==='text'?'<p>'+esc(i.text)+'</p>':
-
-      i.type==='button'?'<button>'+esc(i.text)+'</button>':
-
-      '<p>'+esc(i.text)+'</p>'
-
-    ).join('')+'</body></html>';
-
-  download(html,'mijn-site.html','text/html');
-
-}
-
-// Verhalen
-
-function previewStory(){
-
-  const root=$('storyPreview');
-
-  root.replaceChildren();
-
-  const h=document.createElement('h2');
-
-  h.textContent=$('storyTitle').value||'Mijn verhaal';
-
-  root.append(h);
-
-  const p=document.createElement('p');
-
-  p.style.whiteSpace='pre-wrap';
-
-  p.textContent=$('storyText').value;
-
-  root.append(p);
-
-  const f=$('storyImage').files[0];
-
-  if(f){
-
-    if(storyImageUrl)URL.revokeObjectURL(storyImageUrl);
-
-    storyImageUrl=URL.createObjectURL(f);
-
-    const img=document.createElement('img');
-
-    img.src=storyImageUrl;
-
-    img.style.cssText='max-width:100%;border-radius:15px';
-
-    if($('storyMotion').value==='float')img.className='wash';
-
-    if($('storyMotion').value==='fade')img.style.animation='fadeStory 3s infinite alternate';
-
-    root.append(img);
+    keys[name]=pressed;
 
   }
 
 }
 
-function downloadStory(){
+document.querySelectorAll(".gameControl").forEach(button=>{
 
-  const content='<!doctype html><html lang="nl"><meta charset="utf-8"><title>'+
+  const name=button.dataset.control;
 
-    esc($('storyTitle').value)+'</title><body style="font:18px system-ui;max-width:750px;margin:40px auto;line-height:1.8"><h1>'+
+  button.addEventListener("pointerdown",e=>{
 
-    esc($('storyTitle').value)+'</h1><p style="white-space:pre-wrap">'+
+    e.preventDefault();
 
-    esc($('storyText').value)+'</p></body></html>';
+    button.setPointerCapture(e.pointerId);
 
-  download(content,'mijn-verhaal.html','text/html');
-
-}
-
-// Voorbeeldprojecten
-
-const projects=[
-
-  {type:'Game',emoji:'⭐',name:'Sterrenavontuur',desc:'Een vrolijk platformlevel.'},
-
-  {type:'Game',emoji:'🟣',name:'Vormenwereld',desc:'Spring langs gekleurde vormen.'},
-
-  {type:'Site',emoji:'🌷',name:'Mijn creatieve tuin',desc:'Een kleurrijke voorbeeldwebsite.'},
-
-  {type:'Verhaal',emoji:'🦋',name:'De vliegende vlinder',desc:'Een kort fantasieverhaal.'}
-
-];
-
-function filterOnline(type){
-
-  onlineFilter=type;
-
-  renderOnline();
-
-}
-
-function renderOnline(){
-
-  const root=$('onlineCards');
-
-  root.replaceChildren();
-
-  projects.filter(p=>onlineFilter==='Alle'||p.type===onlineFilter).forEach(p=>{
-
-    const b=document.createElement('button');
-
-    b.className='card';
-
-    const icon=document.createElement('span');
-
-    icon.className='emoji';
-
-    icon.textContent=p.emoji;
-
-    b.append(icon);
-
-    const title=document.createElement('b');
-
-    title.textContent=p.name;
-
-    b.append(title);
-
-    const desc=document.createElement('small');
-
-    desc.textContent=p.desc;
-
-    b.append(desc);
-
-    const tag=document.createElement('p');
-
-    tag.className='pill';
-
-    tag.textContent='Demo · '+p.type;
-
-    b.append(tag);
-
-    root.append(b);
+    setControl(name,true,button);
 
   });
 
+  const release=e=>{
+
+    if(e)e.preventDefault();
+
+    setControl(name,false,button);
+
+  };
+
+  button.addEventListener("pointerup",release);
+
+  button.addEventListener("pointercancel",release);
+
+  button.addEventListener("lostpointercapture",release);
+
+});
+
+window.addEventListener("keydown",e=>{
+
+  if(!playing){
+
+    if(e.key==="Delete"||e.key==="Backspace"){
+
+      const tag=document.activeElement?.tagName;
+
+      if(tag!=="INPUT"&&tag!=="TEXTAREA"&&tag!=="SELECT")deleteObject();
+
+    }
+
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){
+
+      e.preventDefault();undo();
+
+    }
+
+    return;
+
+  }
+
+  if(["ArrowLeft","ArrowRight","ArrowUp"," "].includes(e.key))e.preventDefault();
+
+  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")keys.left=true;
+
+  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")keys.right=true;
+
+  if(e.key==="ArrowUp"||e.key===" "||e.key.toLowerCase()==="w")keys.jump=true;
+
+  if(e.key==="Escape")togglePlay();
+
+});
+
+window.addEventListener("keyup",e=>{
+
+  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")keys.left=false;
+
+  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")keys.right=false;
+
+});
+
+function download(content,name,type){
+
+  const blob=new Blob([content],{type});
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;a.download=name;a.click();
+
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+
 }
+
+function saveJSON(){
+
+  download(JSON.stringify({
+
+    name:$("levelName").value,
+
+    width:canvas.width,
+
+    height:canvas.height,
+
+    objects
+
+  },null,2),"mijn-level.json","application/json");
+
+}
+
+function loadJSON(e){
+
+  const file=e.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+
+    try{
+
+      const data=JSON.parse(reader.result);
+
+      if(!Array.isArray(data.objects))throw new Error("Ongeldig levelbestand");
+
+      const valid=data.objects.every(o=>
+
+        o&&typeof o.type==="string"&&
+
+        ["rect","circle","triangle","star","diamond","platform","decor","text"].includes(o.type)&&
+
+        [o.x,o.y,o.w,o.h].every(Number.isFinite)&&
+
+        typeof o.color==="string"
+
+      );
+
+      if(!valid)throw new Error("Ongeldige objecten");
+
+      snapshot();
+
+      objects=data.objects.map(o=>({
+
+        ...o,
+
+        id:uid(),
+
+        glow:Number(o.glow)||0,
+
+        fontSize:Number(o.fontSize)||28,
+
+        rotation:Number(o.rotation)||0,
+
+        hitbox:!!o.hitbox,
+
+        animating:false,
+
+        baseX:o.x,baseY:o.y
+
+      }));
+
+      $("levelName").value=String(data.name||"Mijn level");
+
+      selected=objects[0]?.id||null;
+
+      draw();
+
+    }catch(err){
+
+      alert("Dit levelbestand kan niet worden geopend: "+err.message);
+
+    }
+
+    e.target.value="";
+
+  };
+
+  reader.readAsText(file);
+
+}
+
+function resetLevel(){
+
+  if(playing)return;
+
+  if(!confirm("Weet je zeker dat je een nieuw leeg level wilt maken?"))return;
+
+  snapshot();
+
+  objects=[];
+
+  selected=null;
+
+  $("levelName").value="Nieuw level";
+
+  draw();
+
+}
+
+function saveHTML(){
+
+  const name=$("levelName").value||"Mijn game";
+
+  const gameData=JSON.stringify({
+
+    name,objects,width:canvas.width,height:canvas.height
+
+  }).replace(/</g,"\\u003c");
+
+  const standalone=String.raw`<!DOCTYPE html>
+
+<html lang="nl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mijn game</title>
+
+<style>
+
+body{margin:0;background:#fffaf0;font:16px system-ui;text-align:center;color:#37352f}
+
+h1{font-size:clamp(22px,4vw,36px)}
+
+main{max-width:900px;margin:auto;padding:12px}
+
+canvas{width:100%;height:auto;border:1px solid #e9dfd0;border-radius:12px;touch-action:none}
+
+button{padding:12px 18px;border:1px solid #e9dfd0;border-radius:12px;background:#fff7fc;font-size:23px}
+
+.controls{display:none;justify-content:space-between;gap:12px;margin-top:12px}
+
+.controls.visible{display:flex}
+
+.group{display:flex;gap:10px}
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<h1 id="title"></h1>
+
+<canvas id="c" width="900" height="500"></canvas>
+
+<div class="controls" id="controls">
+
+<div class="group">
+
+<button data-k="left">◀</button><button data-k="right">▶</button>
+
+</div><button data-k="jump">⬆</button>
+
+</div>
+
+<p>Beweeg met de pijltjestoetsen of de knoppen. Bereik de rechterkant!</p>
+
+<button id="start">▶ Start / opnieuw</button>
+
+</main>
+
+<script>
+
+const data=__GAME_DATA__;
+
+document.getElementById("title").textContent=data.name;
+
+const c=document.getElementById("c"),x=c.getContext("2d");
+
+const controls=document.getElementById("controls");
+
+let running=false,keys={left:false,right:false,jump:false},p={x:35,y:400,vx:0,vy:0,onGround:false},won=false;
+
+const objs=data.objects;
+
+function shape(o){
+
+x.save();x.translate(o.x+o.w/2,o.y+o.h/2);x.rotate((o.rotation||0)*Math.PI/180);
+
+x.fillStyle=o.color;x.strokeStyle="#574d48";x.lineWidth=2;
+
+if(o.glow){x.shadowColor=o.color;x.shadowBlur=o.glow}
+
+if(o.type==="text"){
+
+x.restore();x.save();x.fillStyle=o.color;x.font="bold "+(o.fontSize||28)+"px system-ui";if(o.glow){x.shadowColor=o.color;x.shadowBlur=o.glow}x.fillText(o.text||"Mijn tekst",o.x,o.y);x.restore();return;
+
+}
+
+x.beginPath();
+
+if(o.type==="circle")x.ellipse(0,0,o.w/2,o.h/2,0,0,Math.PI*2);
+
+else if(o.type==="triangle"){x.moveTo(0,-o.h/2);x.lineTo(o.w/2,o.h/2);x.lineTo(-o.w/2,o.h/2);x.closePath()}
+
+else if(o.type==="diamond"){x.moveTo(0,-o.h/2);x.lineTo(o.w/2,0);x.lineTo(0,o.h/2);x.lineTo(-o.w/2,0);x.closePath()}
+
+else if(o.type==="star"){for(let i=0;i<10;i++){let r=i%2?o.w*.23:o.w*.48,a=-Math.PI/2+i*Math.PI/5;let xx=Math.cos(a)*r,yy=Math.sin(a)*r;i?x.lineTo(xx,yy):x.moveTo(xx,yy)}x.closePath()}
+
+else if(o.type==="decor"){x.arc(0,0,o.w/2,0,Math.PI*2)}
+
+else x.rect(-o.w/2,-o.h/2,o.w,o.h);
+
+x.fill();if(o.type!=="decor")x.stroke();
+
+if(o.type==="decor"){x.strokeStyle="#bd6d8b";x.lineWidth=4;for(let i=0;i<5;i++){x.beginPath();x.ellipse(Math.cos(i*Math.PI*2/5)*o.w*.17,Math.sin(i*Math.PI*2/5)*o.h*.17,o.w*.17,o.h*.25,0,0,Math.PI*2);x.stroke()}}
+
+x.restore();
+
+}
+
+function render(){
+
+x.clearRect(0,0,c.width,c.height);x.fillStyle="#fffdf7";x.fillRect(0,0,c.width,c.height);x.strokeStyle="#f0e8dc";
+
+for(let xx=0;xx<900;xx+=25){x.beginPath();x.moveTo(xx,0);x.lineTo(xx,500);x.stroke()}
+
+for(let yy=0;yy<500;yy+=25){x.beginPath();x.moveTo(0,yy);x.lineTo(900,yy);x.stroke()}
+
+objs.forEach(shape);
+
+if(running){
+
+x.fillStyle="#8871c5";x.fillRect(p.x,p.y,28,38);x.fillStyle="white";x.fillRect(p.x+5,p.y+8,6,6);x.fillRect(p.x+17,p.y+8,6,6);
+
+if(won){x.fillStyle="#37352f";x.font="bold 35px system-ui";x.textAlign="center";x.fillText("LEVEL VOLTOOID! ✨",450,90);x.textAlign="left"}
+
+}
+
+}
+
+function step(){
+
+if(running){
+
+p.vx=keys.left?-4:keys.right?4:0;p.x+=p.vx;p.vy+=.48;p.y+=p.vy;p.onGround=false;
+
+objs.forEach(o=>{if(!o.hitbox||["decor","text"].includes(o.type))return;if(p.x+28>o.x&&p.x<o.x+o.w&&p.vy>=0&&p.y+38>=o.y&&p.y+38<=o.y+o.h+Math.max(5,p.vy)){p.y=o.y-38;p.vy=0;p.onGround=true}});
+
+if(p.y+38>=500){p.y=462;p.vy=0;p.onGround=true}
+
+p.x=Math.max(0,Math.min(872,p.x));if(p.y>600){p.x=35;p.y=400;p.vy=0}
+
+if(p.x>835)won=true;
+
+}
+
+render();requestAnimationFrame(step);
+
+}
+
+document.getElementById("start").onclick=()=>{running=true;won=false;p={x:35,y:400,vx:0,vy:0,onGround:false};keys={left:false,right:false,jump:false};controls.classList.add("visible")};
+
+document.querySelectorAll("[data-k]").forEach(b=>{
+
+const k=b.dataset.k;
+
+b.onpointerdown=e=>{e.preventDefault();b.setPointerCapture(e.pointerId);if(k==="jump"){if(p.onGround)keys.jump=true}else keys[k]=true};
+
+const up=()=>{if(k!=="jump")keys[k]=false};
+
+b.onpointerup=up;b.onpointercancel=up;b.onlostpointercapture=up;
+
+});
+
+window.addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight","ArrowUp"," "].includes(e.key))e.preventDefault();if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")keys.left=true;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")keys.right=true;if(e.key===" "||e.key==="ArrowUp"||e.key.toLowerCase()==="w"){if(p.onGround)keys.jump=true}});
+
+window.addEventListener("keyup",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")keys.left=false;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")keys.right=false});
+
+document.getElementById("title").textContent=data.name;step();
+
+<\/script>
+
+</body>
+
+</html>`;
+
+  const html=standalone.replace("__GAME_DATA__",gameData);
+
+  download(html,"mijn-speelbare-game.html","text/html");
+
+}
+
+// Voorbeeldlevel
+
+objects=[
+
+  {...defaultObject("platform",80,445),w:740,h:22},
+
+  {...defaultObject("platform",270,350),w:150,h:20},
+
+  {...defaultObject("platform",510,270),w:140,h:20},
+
+  {...defaultObject("star",320,285),color:"#f7df8b",glow:18},
+
+  {...defaultObject("circle",570,205),color:"#d9c8f3",glow:12},
+
+  {...defaultObject("text",35,45),text:"Mijn avontuur!",color:"#d66c91",fontSize:32,hitbox:false}
+
+];
+
+selected=objects[3].id;
+
+draw();
+
+animationId=requestAnimationFrame(loop);
 
 </script>
 
